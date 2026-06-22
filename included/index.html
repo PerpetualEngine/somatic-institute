@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What you get · Somatic Institute for Women · Perpetual Engine</title>
+<style>
+  :root{--green:#c9f57e;--green-ink:#0d3300;--green-deep:#4e8c12;--ink:#18191b;--sub:#5c5a54;--line:#e7e4dd;--bg:#fff;--panel:#f6f7f2;--sh:0 2px 10px rgba(20,20,15,.05);--sh-h:0 16px 44px rgba(20,20,15,.12)}
+  *{margin:0;box-sizing:border-box}
+  body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5;letter-spacing:-.011em}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+  header{border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;gap:11px;height:64px}
+  .pe{width:30px;height:30px;border-radius:9px;background:var(--ink);color:var(--green);display:grid;place-items:center;font-weight:700;font-size:13px}
+  .wordmark{font-size:16px;font-weight:700}
+  .prep{margin-left:auto;font-size:12.5px;font-weight:600;color:var(--sub)}
+  .hero{text-align:center;padding:56px 0 8px}
+  .eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green-deep);background:var(--green);padding:6px 13px;border-radius:999px;margin-bottom:18px}
+  .hero h1{font-size:clamp(30px,4.6vw,44px);line-height:1.05;letter-spacing:-.03em;font-weight:700;max-width:18ch;margin:0 auto}
+  .hero p{font-size:17px;color:var(--sub);max-width:60ch;margin:16px auto 0}
+
+  .foundation{background:var(--panel);border-radius:22px;padding:30px 30px 26px;margin:40px 0 14px}
+  .foundation h2{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green-deep);text-align:center;margin-bottom:22px}
+  .fgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+  .fitem{text-align:center}
+  .fic{width:42px;height:42px;border-radius:12px;background:var(--green);display:grid;place-items:center;margin:0 auto 12px}
+  .fic svg{width:21px;height:21px;stroke:var(--green-ink);stroke-width:1.8;fill:none}
+  .fitem b{display:block;font-size:14px;font-weight:700;margin-bottom:3px}
+  .fitem span{font-size:12.5px;color:var(--sub);line-height:1.4}
+
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:26px 0 6px;align-items:start}
+  .tier{border:1px solid var(--line);border-radius:20px;padding:26px 24px;box-shadow:var(--sh);position:relative;background:#fff}
+  .tier.rec{border:2px solid var(--green);box-shadow:var(--sh-h)}
+  .recbadge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--green);color:var(--green-ink);font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:6px 14px;border-radius:999px;white-space:nowrap}
+  .tname{font-size:20px;font-weight:700}
+  .tline{font-size:13.5px;color:var(--sub);margin-top:6px;min-height:40px}
+  .tprice{display:flex;align-items:baseline;gap:5px;margin-top:14px}
+  .tprice b{font-size:32px;font-weight:700;letter-spacing:-.02em}
+  .tprice span{font-size:14px;color:var(--sub)}
+  .tsetup{font-size:12.5px;color:var(--green-deep);font-weight:600;margin-top:6px}
+  .hr{height:1px;background:var(--line);margin:18px 0}
+  .feat{list-style:none;display:flex;flex-direction:column;gap:11px}
+  .feat li{display:flex;gap:10px;font-size:14px;line-height:1.4}
+  .feat li.head{font-weight:700}
+  .ck{flex:none;width:19px;height:19px;border-radius:50%;background:var(--green);display:grid;place-items:center;margin-top:1px}
+  .ck svg{width:11px;height:11px;stroke:var(--green-ink);stroke-width:2.6;fill:none}
+
+  .close{text-align:center;padding:36px 0 26px}
+  .close h3{font-size:24px;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
+  .close p{color:var(--sub);font-size:15px;margin-bottom:20px}
+  .btn{display:inline-block;text-decoration:none;font-size:15px;font-weight:700;padding:14px 30px;border-radius:999px;background:var(--green);color:var(--green-ink)}
+  footer{border-top:1px solid var(--line);padding:22px 0;color:var(--sub);font-size:13px;display:flex;justify-content:space-between}
+
+  @media(max-width:880px){
+    .fgrid{grid-template-columns:repeat(2,1fr);gap:20px}
+    .tiers{grid-template-columns:1fr;max-width:460px;margin:0 auto}
+    .tier.rec{order:-1}
+    .tline{min-height:0}
+    footer{flex-direction:column;gap:6px;text-align:center}
+  }
+  @page{size:297mm 210mm;margin:9mm}
+  @media print{
+    body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    header .bar{height:44px}.prep{color:#000}
+    .hero{padding:8px 0 0}.eyebrow{margin-bottom:7px}.hero h1{font-size:21px}.hero p{display:none}
+    .foundation{background:#f3f4ee;margin:11px 0 7px;padding:11px 16px;border-radius:14px}
+    .foundation h2{margin-bottom:9px;font-size:11px}
+    .fgrid{grid-template-columns:repeat(5,1fr)!important;gap:12px!important}
+    .fic{width:30px;height:30px;margin-bottom:6px}.fic svg{width:15px;height:15px}
+    .fitem b{font-size:11px;margin-bottom:2px}.fitem span{font-size:9px;line-height:1.28}
+    .tiers{grid-template-columns:repeat(3,1fr)!important;max-width:none!important;gap:14px;padding:6px 0 0}
+    .tier{padding:13px 14px;box-shadow:none;border:1px solid var(--line)}
+    .tier.rec{order:0!important}
+    .tname{font-size:16px}
+    .tline{font-size:11px;min-height:30px!important;margin-top:4px}
+    .tprice{margin-top:7px}.tprice b{font-size:21px}.tprice span{font-size:11px}
+    .tsetup{font-size:10.5px;margin-top:3px}
+    .hr{margin:9px 0}
+    .feat{gap:6px}.feat li{font-size:10.5px;gap:7px;line-height:1.3}
+    .feat li.head{font-size:10.5px}
+    .ck{width:15px;height:15px}.ck svg{width:9px;height:9px}
+    .close{display:none}
+    footer{flex-direction:row!important;padding:8px 0;font-size:10.5px}
+  }
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+  <div class="pe">PE</div><div class="wordmark">Perpetual Engine</div>
+  <span class="prep">Prepared for Somatic Institute for Women</span>
+</div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <span class="eyebrow">What you get</span>
+    <h1>Your content engine, run for you.</h1>
+    <p>You hand us your videos. We turn them into a week of content in your voice and brand, then schedule and post it for you. Here is what sits inside every engine, and what each level adds.</p>
+  </section>
+
+  <section class="foundation">
+    <h2>In every engine</h2>
+    <div class="fgrid">
+      <div class="fitem">
+        <div class="fic"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M10 9l5 3-5 3z"/></svg></div>
+        <b>From your own videos</b><span>Everything in your exact voice and brand, from videos you already have.</span>
+      </div>
+      <div class="fitem">
+        <div class="fic"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg></div>
+        <b>Full Canva folder</b><span>Every design editable and on-brand, in a folder that stays yours.</span>
+      </div>
+      <div class="fitem">
+        <div class="fic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="11" width="7" height="10" rx="1.5"/><rect x="3" y="15" width="7" height="6" rx="1.5"/></svg></div>
+        <b>Your dashboard</b><span>A private board, calendar, and library to see every piece.</span>
+      </div>
+      <div class="fitem">
+        <div class="fic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div>
+        <b>Posted on autopilot</b><span>We schedule and publish everything to your channels for you.</span>
+      </div>
+      <div class="fitem">
+        <div class="fic"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg></div>
+        <b>Minutes from you</b><span>You glance at a shortlist and approve. That is your whole job.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="tiers">
+    <!-- CONSISTENT -->
+    <div class="tier">
+      <div class="tname">Consistent</div>
+      <div class="tline">You finally show up several times a week, hands-off.</div>
+      <div class="tprice"><b>$700</b><span>/ month</span></div>
+      <div class="tsetup">+ one-time $2,200 engine setup</div>
+      <div class="hr"></div>
+      <ul class="feat">
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>2 reels and 2 carousels every week</span></li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>1 newsletter a month</span></li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>Scheduled and posted for you</span></li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>About 15 minutes a week to approve</span></li>
+      </ul>
+    </div>
+
+    <!-- OMNIPRESENT -->
+    <div class="tier rec">
+      <div class="tname">Omnipresent</div>
+      <div class="tline">You are everywhere, every day, without sweating it.</div>
+      <div class="tprice"><b>$1,200</b><span>/ month</span></div>
+      <div class="tsetup">+ one-time $2,200 engine setup</div>
+      <div class="hr"></div>
+      <ul class="feat">
+        <li class="head"><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>Everything in Consistent, plus:</span></li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>4 long-form blog posts a month</span></li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>Up to 2 newsletters a month</span></li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>Weekly keyword-relevant posts in your niche</span></li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>A weekly roster of Stories material: quotes and exercises to share</span></li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>A monthly strategy call to steer the engine</span></li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>We approve within guardrails you set, so it runs nearly hands-free</span></li>
+      </ul>
+    </div>
+
+    <!-- SALES ENGINE -->
+    <div class="tier">
+      <div class="tname">The Sales Engine</div>
+      <div class="tline">Omnipresence on every channel, plus an email engine that sells.</div>
+      <div class="tprice"><b>$3,500</b><span>/ month</span></div>
+      <div class="tsetup">+ one-time $2,800 engine setup</div>
+      <div class="hr"></div>
+      <ul class="feat">
+        <li class="head"><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>Everything in Omnipresent, plus:</span></li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>A 21-email segmented welcome series, built once and running</span></li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>6 segmented newsletters a month</span></li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>The deepest version of the engine, built to turn your audience into buyers</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="close">
+    <h3>Let's map your first month.</h3>
+    <p>Book a call and we will walk through where to start, together.</p>
+    <a class="btn" href="https://calendly.com/perpetualfunnels/30min">Book a call</a>
+  </section>
+</main>
+
+<footer><div class="wrap" style="display:flex;justify-content:space-between;width:100%;max-width:1080px;margin:0 auto">
+  <span>Perpetual Engine</span><span>Book a call · calendly.com/perpetualfunnels/30min</span>
+</div></footer>
+</body>
+</html>

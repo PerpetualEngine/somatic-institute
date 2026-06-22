@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perpetual Engine · Pricing</title>
+<style>
+  :root{
+    --green:#c9f57e; --green-ink:#0d3300; --green-deep:#4e8c12;
+    --ink:#18191b; --sub:#6f6d68; --line:#eceae5; --bg:#ffffff; --panel:#f6f7f2;
+    --sh:0 2px 10px rgba(20,20,15,.05); --sh-h:0 18px 50px rgba(20,20,15,.13);
+  }
+  *{margin:0;box-sizing:border-box}
+  body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5;letter-spacing:-.011em}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  a{color:inherit}
+
+  header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.85);backdrop-filter:saturate(160%) blur(14px);border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:11px}
+  .pe{width:30px;height:30px;border-radius:9px;background:var(--ink);color:var(--green);display:grid;place-items:center;font-weight:700;font-size:13px}
+  .wordmark{font-size:16px;font-weight:700;letter-spacing:-.02em}
+  .navcta{font-size:13.5px;font-weight:600;text-decoration:none;background:var(--ink);color:#fff;padding:9px 16px;border-radius:999px}
+
+  .hero{text-align:center;padding:74px 0 26px}
+  .eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green-deep);background:var(--green);padding:6px 13px;border-radius:999px;margin-bottom:22px}
+  .hero h1{font-size:clamp(34px,5vw,52px);line-height:1.04;letter-spacing:-.03em;font-weight:700;max-width:14ch;margin:0 auto}
+  .hero p{font-size:18px;color:var(--sub);max-width:54ch;margin:20px auto 0;line-height:1.5}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start;padding:30px 0 8px}
+  .card{background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:30px 26px;box-shadow:var(--sh);display:flex;flex-direction:column;min-height:100%}
+  .card.pop{border:2px solid var(--green);box-shadow:var(--sh-h);position:relative}
+  .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--green);color:var(--green-ink);font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border-radius:999px}
+  .tname{font-size:20px;font-weight:700;letter-spacing:-.01em}
+  .twho{font-size:16px;line-height:1.4;color:#42403b;margin-top:8px;min-height:46px}
+  .price{display:flex;align-items:baseline;gap:6px;margin-top:18px}
+  .price .amt{font-size:42px;font-weight:700;letter-spacing:-.03em}
+  .price .per{font-size:15px;color:var(--sub);font-weight:500}
+  .setup{font-size:12.5px;color:var(--green-deep);font-weight:600;margin-top:8px}
+  .hr{height:1px;background:var(--line);margin:22px 0}
+  .feat{list-style:none;display:flex;flex-direction:column;gap:12px;flex:1}
+  .feat li{display:flex;gap:10px;font-size:14px;line-height:1.4}
+  .feat li.head{font-weight:600;color:var(--ink)}
+  .ck{flex:none;width:19px;height:19px;border-radius:50%;background:var(--green);display:grid;place-items:center;margin-top:1px}
+  .ck svg{width:11px;height:11px;stroke:var(--green-ink);stroke-width:2.6;fill:none}
+  .btn{display:block;text-align:center;text-decoration:none;font-size:14.5px;font-weight:700;padding:13px 18px;border-radius:999px;margin-top:24px;transition:transform .12s ease}
+  .btn:hover{transform:translateY(-1px)}
+  .btn.dark{background:var(--ink);color:#fff}
+  .btn.lime{background:var(--green);color:var(--green-ink)}
+  .btn.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--ink)}
+
+  .note{text-align:center;color:var(--sub);font-size:13.5px;margin-top:18px}
+
+  .how{background:var(--panel);border-radius:24px;padding:46px 30px;margin:54px 0;text-align:center}
+  .how h2{font-size:26px;font-weight:700;letter-spacing:-.02em}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px;text-align:left}
+  .step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px}
+  .snum{width:30px;height:30px;border-radius:9px;background:var(--green);color:var(--green-ink);display:grid;place-items:center;font-weight:700;font-size:14px;margin-bottom:13px}
+  .step h4{font-size:16px;font-weight:700;margin-bottom:5px}
+  .step p{font-size:13.5px;color:var(--sub);line-height:1.45}
+
+  .close{text-align:center;padding:20px 0 80px}
+  .close h3{font-size:clamp(24px,3.4vw,32px);font-weight:700;letter-spacing:-.02em;max-width:20ch;margin:0 auto 8px}
+  .close p{color:var(--sub);font-size:16px;margin-bottom:24px}
+  .close .btn{display:inline-block;margin-top:0;padding:15px 32px;font-size:16px}
+
+  footer{border-top:1px solid var(--line);padding:26px 0;color:var(--sub);font-size:13px;display:flex;justify-content:space-between;align-items:center}
+
+  @media(max-width:860px){
+    .grid{grid-template-columns:1fr;max-width:440px;margin:0 auto}
+    .card.pop{order:-1}
+    .steps{grid-template-columns:1fr}
+    .twho{min-height:0}
+    footer{flex-direction:column;gap:8px;text-align:center}
+  }
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+  <div class="brand"><div class="pe">PE</div><div class="wordmark">Perpetual Engine</div></div>
+  <a class="navcta" href="https://calendly.com/perpetualfunnels/30min">Book a call</a>
+</div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <span class="eyebrow">Pricing</span>
+    <h1>Your content engine, run for you.</h1>
+    <p>You hand us your videos. We turn them into everything, in your voice and brand, every week. Pick the engine that fits where you are.</p>
+  </section>
+
+  <section class="grid">
+    <!-- GROW -->
+    <div class="card">
+      <div class="tname">Consistent</div>
+      <div class="twho">You finally show up five days a week, hands-off.</div>
+      <div class="price"><span class="amt">$700</span><span class="per">/ month</span></div>
+      <div class="setup">+ one-time $2,200 engine setup</div>
+      <div class="hr"></div>
+      <ul class="feat">
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>2 reels and 2 carousels every week</span></li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>1 newsletter a month</span></li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>All in your voice and brand, from videos you already have</span></li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>Scheduled, posted, and tracked in your own dashboard</span></li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>15 minutes a week to approve the content</span></li>
+      </ul>
+      <a class="btn ghost" href="https://buy.stripe.com/4gMdRbfiMco0fd53z11gs02">Start with Consistent</a>
+    </div>
+
+    <!-- FIELD -->
+    <div class="card pop">
+      <div class="tname">Omnipresent</div>
+      <div class="twho">You are everywhere, every day, without sweating it.</div>
+      <div class="price"><span class="amt">$1,200</span><span class="per">/ month</span></div>
+      <div class="setup">+ one-time $2,200 engine setup</div>
+      <div class="hr"></div>
+      <ul class="feat">
+        <li class="head"><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>Everything in Consistent, plus:</span></li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>4 long-form blog posts a month</span></li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>Up to 2 newsletters a month</span></li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>Weekly keyword-relevant posts in your niche</span></li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>Shareable quote posts and exercises for your feed and Stories</span></li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>A monthly strategy call to steer the engine</span></li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>Even less of your time: we approve within guardrails you set</span></li>
+      </ul>
+      <a class="btn lime" href="https://buy.stripe.com/3cIfZjdaE5ZC3un4D51gs03">Choose Omnipresent</a>
+    </div>
+
+    <!-- FULL -->
+    <div class="card">
+      <div class="tname">The Sales Engine</div>
+      <div class="twho">Omnipresence on every channel, plus an email engine that sells.</div>
+      <div class="price"><span class="amt">$3,500</span><span class="per">/ month</span></div>
+      <div class="setup">+ one-time $2,800 engine setup</div>
+      <div class="hr"></div>
+      <ul class="feat">
+        <li class="head"><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>Everything in Omnipresent, plus:</span></li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>A 21-email segmented welcome series, built once and running</span></li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>6 segmented newsletters a month</span></li>
+        <li><span class="ck"><svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg></span><span>Our email specialty, the deepest version of the engine</span></li>
+      </ul>
+      <a class="btn dark" href="https://buy.stripe.com/00w14pb2w73GaWP1qT1gs04">Build the Sales Engine</a>
+    </div>
+  </section>
+
+  <p class="note">The one-time setup covers the heavy lift: we ingest your backlog, transcribe it, build your voice profile and dashboard, and ship your first batch.</p>
+
+  <section class="how">
+    <h2>How the engine runs</h2>
+    <div class="steps">
+      <div class="step"><div class="snum">1</div><h4>You share your videos</h4><p>The long form videos you already have. One light handoff to start.</p></div>
+      <div class="step"><div class="snum">2</div><h4>We turn them into everything</h4><p>Carousels, clips, emails, blogs, and newsletters, written and designed in your voice.</p></div>
+      <div class="step"><div class="snum">3</div><h4>You approve, we publish</h4><p>You glance at a shortlist and approve. We schedule, post, and track it for you.</p></div>
+    </div>
+  </section>
+
+  <section class="close">
+    <h3>Want help choosing the right tier?</h3>
+    <p>Book a call and we will map your first month together.</p>
+    <a class="btn lime" href="https://calendly.com/perpetualfunnels/30min">Map my first month</a>
+  </section>
+</main>
+
+<footer><div class="wrap" style="display:flex;justify-content:space-between;width:100%;max-width:1120px;margin:0 auto">
+  <span>Perpetual Engine</span>
+  <span>In presence, Eric</span>
+</div></footer>
+</body>
+</html>

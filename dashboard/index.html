@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perpetual Engine · Somatic Institute for Women</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff; --ink:#18191b; --ink-d:#121212; --sub:#79716b; --line:#ececea; --panel:#f2f1f0; --surface:#ffffff;
+    --green:#c9f57e; --green-ink:#083300; --green-deep:#5aa31c;
+    --colbd:#e6e3dc; --colbd-w:1px;
+    --f-reel:#16a34a; --f-carousel:#5666f5; --f-blog:#7c5cff; --f-email:#0d9488;
+    --f-reel-s:#e7f6ed; --f-carousel-s:#ebedfe; --f-blog-s:#efeaff; --f-email-s:#e2f4f1;
+    --s-draft:#94a3b8; --s-ready:#16a34a; --s-sched:#5666f5; --s-pub:#0d9488;
+    --sh:0 2px 8px rgba(20,20,15,.05); --sh-h:0 14px 40px rgba(20,20,15,.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Helvetica Neue",Helvetica,"Inter",Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5;letter-spacing:-.011em}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+
+  header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.86);backdrop-filter:saturate(160%) blur(16px);border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:11px}
+  .pe{width:30px;height:30px;border-radius:9px;background:var(--ink);color:var(--green);display:grid;place-items:center;font-weight:700;font-size:13px}
+  .wordmark{font-size:16px;font-weight:700;letter-spacing:-.02em}
+  .nav{display:flex;gap:26px}.nav a{font-size:13.5px;color:var(--sub);text-decoration:none;font-weight:500;cursor:pointer}.nav a:hover{color:var(--ink)}.nav a.on{color:var(--ink-d);font-weight:600}
+  .lib{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;padding:2px 0 60px}
+  .rep{grid-template-columns:repeat(2,1fr);gap:18px;max-width:920px;padding:2px 0 60px}
+  .repcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 24px;box-shadow:var(--sh)}
+  .repcard h3{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--sub);margin-bottom:18px}
+  .barrow{display:flex;align-items:center;gap:12px;margin:11px 0}
+  .barrow .bl{width:128px;font-size:13px;color:var(--ink)}
+  .bartrack{flex:1;height:10px;background:var(--panel);border-radius:999px;overflow:hidden;display:block}
+  .barfill{display:block;height:100%;border-radius:999px;min-width:6px}
+  .barrow .bv{width:26px;text-align:right;font-size:13px;font-weight:600}
+  .client{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--sub)}
+  .avatar{width:30px;height:30px;border-radius:50%;background:var(--green);color:var(--green-ink);display:grid;place-items:center;font-size:12px;font-weight:700}
+
+  .head{padding:60px 0 12px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;background:#f1fde0;color:var(--ink-d);font-size:12.5px;font-weight:500;padding:7px 15px;border-radius:999px}
+  .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green-deep)}
+  .head h1{font-weight:500;font-size:54px;letter-spacing:-.04em;margin-top:18px;line-height:.96;color:var(--ink-d)}
+  .head p{color:var(--sub);font-size:18px;max-width:560px;margin-top:16px;letter-spacing:-.015em}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:36px 0 8px}
+  .tile{background:#c9f57e;border:1px solid #bcee68;border-radius:18px;padding:24px;box-shadow:var(--sh)}
+  .tile .n{font-size:46px;font-weight:500;letter-spacing:-.04em;line-height:1;color:var(--ink-d)}
+  .tile .l{font-size:13px;color:#46622a;margin-top:9px;display:flex;align-items:center;gap:7px}
+  .tile .dot{width:9px;height:9px;border-radius:50%}
+
+  .toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:36px 0 16px}
+  .seg{display:inline-flex;background:var(--panel);border-radius:999px;padding:4px;gap:3px}
+  .seg button{font-family:"Inter";border:none;background:transparent;padding:9px 18px;border-radius:999px;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;transition:.18s}
+  .seg button.on{background:var(--green);color:var(--green-ink)}
+  .calnav{display:flex;align-items:center;gap:12px}
+  .calnav .arw{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:15px;color:var(--ink)}
+  .calnav .lbl{font-size:19px;font-weight:700;min-width:190px;text-align:center;letter-spacing:-.01em}
+  .calnav .today{font-size:13px;font-weight:600;border:none;background:var(--green);color:var(--green-ink);border-radius:999px;padding:10px 18px;cursor:pointer}
+
+  .legend{display:flex;gap:18px;flex-wrap:wrap;margin:0 0 24px;font-size:13px;color:var(--sub)}
+  .legend b{display:inline-flex;align-items:center;gap:8px;font-weight:500}
+  .legend .ld{width:12px;height:12px;border-radius:5px}
+
+  .board{display:flex;gap:18px;align-items:flex-start;overflow-x:auto;padding:2px 0 60px}
+  .col{flex:1;min-width:278px;background:var(--surface);border:var(--colbd-w) solid var(--colbd);border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:14px;box-shadow:var(--sh)}
+  .colh{display:flex;align-items:center;gap:9px;padding:4px 6px 2px}
+  .colh .cdot{width:9px;height:9px;border-radius:50%}
+  .colh .cname{font-size:14px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+  .colh .cct{margin-left:auto;font-size:13px;font-weight:700;color:var(--sub);background:var(--panel);border-radius:999px;padding:2px 11px}
+  .col[data-c=drafting] .cdot{background:var(--s-draft)} .col[data-c=ready] .cdot{background:var(--s-ready)}
+  .col[data-c=scheduled] .cdot{background:var(--s-sched)} .col[data-c=published] .cdot{background:var(--s-pub)}
+
+  .card{background:var(--surface);border-radius:14px;overflow:hidden;box-shadow:var(--sh);cursor:pointer;transition:.18s}
+  .card:hover{transform:translateY(-4px);box-shadow:var(--sh-h)}
+  .cover{position:relative;height:132px;background:var(--panel)}
+  .cover img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+  .cover.reel img{object-position:center}
+  .cover .play{position:absolute;inset:0;display:grid;place-items:center}
+  .cover .play span{width:40px;height:40px;border-radius:50%;background:var(--green);display:grid;place-items:center;box-shadow:0 3px 12px rgba(0,0,0,.18)}
+  .cover .play span::after{content:"";border-left:13px solid var(--green-ink);border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:3px}
+  .ft{position:absolute;top:10px;left:10px;font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:#fff;padding:4px 10px;border-radius:999px}
+  .iconfill{width:100%;height:100%;display:grid;place-items:center;color:#fff}
+  .cbody{padding:13px 15px 16px}
+  .cbody .ct{font-size:15.5px;font-weight:500;line-height:1.3;letter-spacing:-.015em}
+  .cbody .cm{font-size:12px;color:var(--sub);margin-top:9px;display:flex;justify-content:space-between;align-items:center}
+
+  .cal{padding-bottom:60px}
+  .dow{display:grid;grid-template-columns:repeat(7,1fr);gap:9px;margin-bottom:9px}
+  .dow div{font-size:11px;font-weight:600;color:var(--sub);text-transform:uppercase;letter-spacing:.8px;padding-left:4px}
+  .month{display:grid;grid-template-columns:repeat(7,1fr);gap:9px}
+  .cell{background:var(--surface);border:1px solid var(--line);border-radius:14px;min-height:122px;padding:9px;display:flex;flex-direction:column;gap:5px}
+  .cell.out{background:var(--panel);opacity:.6}
+  .cell .dn{font-size:14px;font-weight:700;color:var(--sub)}
+  .cell.today .dn{background:var(--green);color:var(--green-ink);width:27px;height:27px;border-radius:50%;display:grid;place-items:center}
+  .ev{font-size:11px;font-weight:500;color:var(--ink);border-radius:8px;padding:4px 8px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3}
+  .weekgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:9px}
+  .wcol{background:var(--surface);border:1px solid var(--line);border-radius:14px;min-height:320px;padding:11px;display:flex;flex-direction:column;gap:8px}
+  .wcol .wh{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px}.wcol .wh span{display:block;font-size:16px;letter-spacing:-.01em;text-transform:none;color:var(--sub);font-weight:700}
+  .wcol.today{border-color:var(--green-deep);box-shadow:0 0 0 2px var(--f-reel-s)}
+  .ev2{border-radius:11px;padding:9px 10px;cursor:pointer;color:var(--ink);font-size:12.5px;font-weight:500;line-height:1.3}
+  .ev2 small{display:block;opacity:.7;font-weight:400;margin-top:2px}
+  .dayview{display:flex;flex-direction:column;gap:12px;max-width:660px}
+  .dayrow{display:flex;gap:14px;align-items:center;background:var(--surface);border-radius:14px;box-shadow:var(--sh);padding:13px 15px;cursor:pointer}
+  .dayrow:hover{box-shadow:var(--sh-h)}
+  .dayrow .th{width:50px;height:64px;border-radius:10px;overflow:hidden;flex:none;background:var(--panel)}
+  .dayrow .th img{width:100%;height:100%;object-fit:cover}
+  .dayrow .dt{font-size:15.5px;font-weight:600}
+  .dayrow .dm{font-size:12px;color:var(--sub);margin-top:3px}
+  .emptyday{color:var(--sub);font-size:15px;padding:30px 4px}
+
+  .ovl{position:fixed;inset:0;background:rgba(18,18,18,.5);backdrop-filter:blur(8px);display:none;place-items:center;z-index:100;padding:24px}
+  .ovl.open{display:grid}
+  .modal{background:var(--surface);border-radius:20px;max-width:min(94vw,560px);width:100%;max-height:92vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 30px 80px rgba(18,18,18,.34)}
+  .modal-h{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:20px 24px;border-bottom:1px solid var(--line)}
+  .modal-h .mt{font-size:18px;font-weight:700;line-height:1.25;letter-spacing:-.01em}
+  .modal-h .ms{font-size:12px;color:var(--sub);margin-top:4px}
+  .x{border:none;background:var(--panel);width:32px;height:32px;border-radius:50%;font-size:15px;cursor:pointer;flex:none;color:var(--ink)}
+  .modal-body{padding:20px 24px 24px;overflow:auto;background:var(--bg)}
+  .slides{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}
+  .slides img{height:62vh;border-radius:14px;scroll-snap-align:center;flex:none;box-shadow:var(--sh-h)}
+  .swipehint{font-size:12px;color:var(--sub);text-align:center;margin-top:12px}
+  .mailbody,.blogbody{font-family:Georgia,"Times New Roman",serif;color:#2c2b27;line-height:1.66;font-size:15.5px}
+  .mailbody .subj,.blogbody .kr{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#4e8c12;font-weight:700;margin-bottom:14px}
+  .mailbody p,.blogbody p{margin-bottom:13px}
+  .mailbody .sig{margin-top:16px;font-style:italic;color:#6f6d68}
+  .blogbody .more{font-family:"Helvetica Neue",Arial,sans-serif;font-size:13px;color:#6f6d68;font-style:normal}
+  .modal-body{flex:1 1 auto;min-height:0}
+  .fb{flex:none;border-top:1px solid var(--line);padding:16px 24px 20px;background:var(--surface)}
+  .fb h4{font-size:11.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--sub);margin-bottom:11px}
+  .fbrow{display:flex;gap:10px;margin-bottom:11px}
+  .fbtn{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:10px;font:inherit;font-size:13.5px;font-weight:700;cursor:pointer;color:var(--ink);transition:.15s}
+  .fbtn.sel-ap{background:var(--green);border-color:var(--green);color:var(--green-ink)}
+  .fbtn.sel-ch{background:#fbe6c4;border-color:#e3a83c;color:#7a4d06}
+  .fb textarea{width:100%;box-sizing:border-box;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;font-size:14px;resize:vertical;min-height:58px}
+  .fbsend{margin-top:11px;width:100%;border:none;background:var(--ink);color:#fff;border-radius:10px;padding:12px;font-size:14px;font-weight:700;cursor:pointer}
+  .fbsend:disabled{opacity:.45;cursor:default}
+  .fbdone{margin-top:9px;font-size:13px;color:var(--green-deep);font-weight:700;display:none}
+  .fbsaved{display:none;font-size:12.5px;color:var(--sub);background:var(--panel);border-radius:8px;padding:8px 10px;margin-bottom:10px}
+  .card{position:relative}
+  .cardfb{position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;color:#fff;z-index:2;box-shadow:0 1px 4px rgba(0,0,0,.3)}
+  .reelvid{width:100%;max-height:68vh;border-radius:14px;background:#000;display:block;margin:0 auto}
+  footer{padding:18px 0 60px;text-align:center;color:var(--sub);font-size:12.5px}
+  footer .pe-sm{font-weight:700;color:var(--ink)}
+  @media(max-width:768px){.stats{grid-template-columns:repeat(2,1fr)}.head h1{font-size:38px}.nav{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+  <div class="brand"><div class="pe">PE</div><div class="wordmark">Perpetual Engine</div></div>
+  <nav class="nav" id="topnav"><a data-v="board" class="on">Board</a><a data-v="calendar">Calendar</a><a data-v="library">Library</a><a data-v="reports">Reports</a></nav>
+  <div class="client"><div class="avatar">M</div><span style="color:var(--ink);font-weight:600">@somaticinstituteforwomen</span></div>
+</div></header>
+
+<main class="wrap">
+  <div class="head">
+    <div class="eyebrow">Content Engine · Live</div>
+    <h1>Track every piece, visually.</h1>
+    <p>Switch between the progress board and a real calendar. Color shows the format. Tap anything to preview.</p>
+  </div>
+
+  <section class="stats" id="stats"></section>
+
+  <div class="toolbar">
+    <div></div>
+    <div class="calnav" id="calnav" style="display:none">
+      <div class="seg" id="calmodeseg">
+        <button data-m="day">Day</button><button data-m="week">Week</button><button data-m="month" class="on">Month</button>
+      </div>
+      <button class="today" id="todayBtn">Today</button>
+      <button class="arw" id="prev">‹</button>
+      <div class="lbl" id="callbl"></div>
+      <button class="arw" id="next">›</button>
+    </div>
+  </div>
+
+  <div class="legend">
+    <b><span class="ld" style="background:var(--f-reel)"></span>Reel</b>
+    <b><span class="ld" style="background:var(--f-carousel)"></span>Carousel</b>
+    <b><span class="ld" style="background:var(--f-blog)"></span>Blog</b>
+    <b><span class="ld" style="background:var(--f-email)"></span>Email</b>
+  </div>
+
+  <div class="board" id="board"></div>
+  <div class="cal" id="cal" style="display:none"></div>
+  <div class="lib" id="lib" style="display:none"></div>
+  <div class="rep" id="rep" style="display:none"></div>
+</main>
+
+<div class="ovl" id="ovl"><div class="modal">
+  <div class="modal-h"><div><div class="mt" id="mtitle"></div><div class="ms" id="msub"></div></div><button class="x" id="x">✕</button></div>
+  <div class="modal-body" id="mbody"></div>
+  <div class="fb" id="mfeedback"></div>
+</div></div>
+<footer><div class="pe-sm">Perpetual Engine</div><div style="margin-top:6px">Content engine for @somaticinstituteforwomen · Updated live</div></footer>
+
+<!-- hidden form so Netlify detects + captures client feedback submissions -->
+<form name="client-feedback" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="client"><input type="text" name="piece"><input type="text" name="theme">
+  <input type="text" name="decision"><textarea name="comment"></textarea><input type="text" name="bot-field">
+</form>
+
+<script>
+const A="dashboard_assets/";
+const CLIENT="Somatic Institute for Women";
+const FB_EMAIL="eric@perpetualnurture.com";
+function fbKey(d){return "fb:"+CLIENT+":"+d.t;}
+function getFb(d){try{return JSON.parse(localStorage.getItem(fbKey(d))||"null");}catch(e){return null;}}
+function setFb(d,v){try{localStorage.setItem(fbKey(d),JSON.stringify(v));}catch(e){}}
+function sendFeedback(d,decision,comment,onok){setFb(d,{decision:decision,comment:comment});const dec=decision==="approve"?"Approve":"Request a change";const s=encodeURIComponent("Content feedback: "+d.t);const b=encodeURIComponent("From: "+CLIENT+"
+Piece: "+d.t+"
+Theme: "+d.theme+"
+Decision: "+dec+"
+Note: "+(comment||"(none)"));window.location.href="mailto:"+FB_EMAIL+"?subject="+s+"&body="+b;onok&&onok();}
+function renderFeedback(d){
+  const fb=document.getElementById("mfeedback"),saved=getFb(d);
+  fb.innerHTML='<h4>Your feedback</h4><div class="fbsaved" id="fbsaved"></div>'+
+    '<div class="fbrow"><button class="fbtn" id="fbAp">&#10003; Approve</button><button class="fbtn" id="fbCh">&#9998; Request a change</button></div>'+
+    '<textarea id="fbText" placeholder="Add a note (optional)…"></textarea>'+
+    '<button class="fbsend" id="fbSend" disabled>Send to Perpetual Engine</button>'+
+    '<div class="fbdone" id="fbDone">Sent. Thank you — we have it.</div>';
+  const ap=fb.querySelector("#fbAp"),ch=fb.querySelector("#fbCh"),txt=fb.querySelector("#fbText"),send=fb.querySelector("#fbSend"),done=fb.querySelector("#fbDone"),sv=fb.querySelector("#fbsaved");
+  let decision=null;
+  if(saved){sv.style.display="block";sv.textContent="You said: "+(saved.decision==="approve"?"Approved":"Requested a change")+(saved.comment?(" — “"+saved.comment+"”"):"");if(saved.comment)txt.value=saved.comment;}
+  function setDec(x){decision=x;ap.classList.toggle("sel-ap",x==="approve");ch.classList.toggle("sel-ch",x==="change");send.disabled=false;}
+  ap.onclick=()=>setDec("approve");ch.onclick=()=>setDec("change");
+  send.onclick=()=>{if(!decision)return;sendFeedback(d,decision,txt.value,()=>{done.style.display="block";send.textContent="Sent ✓";send.disabled=true;renderBoard();});};
+}
+const DECK=["carousel/s1.jpg","carousel/s2.jpg","carousel/s3.jpg","carousel/s4.jpg","carousel/s5.jpg","carousel/s6.jpg"];
+const FCOL={reel:"var(--f-reel)",carousel:"var(--f-carousel)",blog:"var(--f-blog)",email:"var(--f-email)"};
+const FSOFT={reel:"var(--f-reel-s)",carousel:"var(--f-carousel-s)",blog:"var(--f-blog-s)",email:"var(--f-email-s)"};
+const COLS=[{k:"drafting",n:"Drafting"},{k:"ready",n:"Ready to post"},{k:"scheduled",n:"Scheduled"},{k:"published",n:"Published"}];
+const DATA=[
+ {t:"Every act of homecoming has an impact.",f:"reel",fmt:"Reel · 0:56",theme:"The Shadow & Inner Light",s:"published",d:"2026-06-12",img:"poster.jpg",vid:"clip.mp4"},
+ {t:"We are more at home with our flaws than our greatness.",f:"carousel",fmt:"Carousel · 6 slides",theme:"The Shadow & Inner Light",s:"scheduled",d:"2026-06-16",img:"carousel/s1.jpg",deck:1},
+ {t:"The part of you that learned to stay small",f:"email",fmt:"Email",theme:"The Shadow & Inner Light",s:"ready",d:"2026-06-17",body:"<div class='mailbody'><p>There is a part of you that learned to stay small.</p><p>Most of us know the feeling. Somewhere along the way we understood, quietly, that to be too much was to risk being left. Too bright, too hungry, too alive. So we folded those parts away and called it being good.</p><p>We are more comfortable talking about our dark and destructive qualities than our greatness. It is easier to name where we feel broken than where we feel luminous. The greatness feels more exposing than the wound.</p><p>And yet your fullness, your aliveness, your gifts, these are the parts most worth coming home to. Reclaiming them is the quiet work of the shadow. Every act of homecoming and reclamation has an impact, on you and on every woman near you.</p><p>Just for today, notice one quality you admire in another woman. Sit with the possibility that it is also waiting in you.</p><p>If you long to do this work in company, our community is here, in your own time.</p><div class='sig'>With love,<br>Maanee</div></div>"},
+ {t:"Your body is communicating with you all the time.",f:"reel",fmt:"Reel · 0:38",theme:"Coming Home to the Body",s:"scheduled",d:"2026-06-18",img:"photos/p2.jpg"},
+ {t:"The body becomes the place in which meaning is formed.",f:"carousel",fmt:"Carousel · 6 slides",theme:"Coming Home to the Body",s:"ready",d:"2026-06-20",img:"photos/p3.jpg"},
+ {t:"The light we learned to hide",f:"blog",fmt:"Blog · long-form",theme:"The Shadow & Inner Light",s:"drafting",d:"2026-06-23",body:"<div class='blogbody'><p class='kr'>Long-form blog · draft</p><p>Most of what we hide is not our darkness. It is our light.</p><p>Somewhere early, we learned that our brightness made the room uneasy, so we dimmed it to stay close to the people we loved. The dimming worked. It also cost us the fullest version of ourselves.</p><p>This piece walks through the slow, tender work of letting that light back in: how to notice where you shrink, how to stay with the discomfort of being seen, and how to let your presence take up its real size.</p><p class='more'>Full draft continues in your library.</p></div>"},
+ {t:"The feminine body is an Oracle.",f:"carousel",fmt:"Carousel · 6 slides",theme:"Reclaiming Sensuality",s:"ready",d:"2026-06-24",img:"photos/p4.jpg"},
+ {t:"Sensation is trusted information.",f:"reel",fmt:"Reel · 0:33",theme:"Reclaiming Sensuality",s:"scheduled",d:"2026-06-25",img:"photos/p5.jpg"},
+ {t:"Coming home to the body",f:"email",fmt:"Email",theme:"Coming Home to the Body",s:"drafting",d:"2026-06-26",body:"<div class='mailbody'><div class='subj'>A note to our community</div><p>Your body is communicating with you all the time. Most of us learned to talk over it.</p><p>We were taught to lead with the mind and treat the body like something to manage. So the signals kept arriving, and we kept overriding them.</p><p>Coming home to the body is slower than that. It begins with one honest question: what am I feeling right now, underneath the story about it?</p><p>You do not have to fix the answer. You only have to feel it. The body becomes the place where meaning is formed, and it will meet you the moment you turn toward it.</p><p>Today, take three breaths and let your attention drop from your head into your chest. Stay for one minute. That is the whole practice.</p><div class='sig'>With love,<br>Maanee</div></div>"},
+ {t:"Most of what we hide is our own light.",f:"carousel",fmt:"Carousel · 6 slides",theme:"The Shadow & Inner Light",s:"ready",d:"2026-06-27",img:"carousel/s1.jpg",deck:1},
+ {t:"My presence is enough.",f:"reel",fmt:"Reel · 0:44",theme:"Leading from Embodiment",s:"ready",d:"2026-06-29",img:"photos/p1.jpg"},
+ {t:"Who you are is more powerful than your words.",f:"carousel",fmt:"Carousel · 6 slides",theme:"Leading from Embodiment",s:"ready",d:"2026-07-01",img:"photos/p3.jpg"},
+ {t:"Reclaiming the parts we hid to stay loved",f:"blog",fmt:"Blog · long-form",theme:"The Shadow & Inner Light",s:"ready",d:"2026-07-02",body:"<div class='blogbody'><p class='kr'>Long-form blog · ready</p><p>We all made quiet trades to stay loved. A feeling here, a need there, a part of us that seemed like too much for the people we needed.</p><p>Reclaiming those parts is not about blame. It is about going back for what we left behind and welcoming it home with the tenderness it deserved the first time.</p><p>Here we move through how that homecoming actually unfolds: meeting the exiled part, listening to what it protected, and letting it return to the whole of who you are.</p><p class='more'>Full draft continues in your library.</p></div>"},
+ {t:"You can feel without urgency.",f:"reel",fmt:"Reel · 0:29",theme:"Reclaiming Sensuality",s:"ready",d:"2026-07-03",img:"photos/p2.jpg"}
+];
+const ICON={blog:'<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 3h9l4 4v14H6z"/><path d="M9 9h7M9 13h7M9 17h4"/></svg>',email:'<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>'};
+const cnt=k=>DATA.filter(d=>d.s===k).length;
+document.getElementById('stats').innerHTML=`
+ <div class="tile"><div class="n">${DATA.length}</div><div class="l">Pieces in motion</div></div>
+ <div class="tile"><div class="n">${cnt('ready')}</div><div class="l">Ready to post</div></div>
+ <div class="tile"><div class="n">${cnt('scheduled')}</div><div class="l">Scheduled</div></div>
+ <div class="tile"><div class="n">${cnt('published')}</div><div class="l">Published</div></div>`;
+function cover(d){
+  if(d.f==="reel")return `<div class="cover reel"><img src="${d.img}"><div class="ft" style="background:${FCOL.reel}">Reel</div><div class="play"><span></span></div></div>`;
+  if(d.f==="carousel")return `<div class="cover"><img src="${d.img}"><div class="ft" style="background:${FCOL.carousel}">Carousel</div></div>`;
+  return `<div class="cover"><div class="iconfill" style="background:${FCOL[d.f]}">${ICON[d.f]}</div></div>`;
+}
+const board=document.getElementById('board');
+function renderBoard(){
+  board.innerHTML='';
+  COLS.forEach(c=>{const items=DATA.filter(d=>d.s===c.k);
+    const col=document.createElement('div');col.className='col';col.dataset.c=c.k;
+    col.innerHTML=`<div class="colh"><span class="cdot"></span><span class="cname">${c.n}</span><span class="cct">${items.length}</span></div>`;
+    items.forEach(d=>{const card=document.createElement('div');card.className='card';
+      const _f=getFb(d);const _b=_f?`<div class="cardfb" title="${_f.decision==='approve'?'You approved this':'You requested a change'}" style="background:${_f.decision==='approve'?'#16a34a':'#e3a83c'}">${_f.decision==='approve'?'✓':'✎'}</div>`:'';
+      card.innerHTML=`${cover(d)}${_b}<div class="cbody"><div class="ct">${d.t}</div><div class="cm"><span>${d.theme}</span><span>${fmtDate(d.d)}</span></div></div>`;
+      card.onclick=()=>openModal(d);col.appendChild(card);});
+    board.appendChild(col);});
+}
+const cal=document.getElementById('cal');
+const MON=["January","February","March","April","May","June","July","August","September","October","November","December"];
+const DOW=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+let cursor=new Date(2026,5,1); let calMode="month";
+function key(dt){return dt.getFullYear()+"-"+String(dt.getMonth()+1).padStart(2,"0")+"-"+String(dt.getDate()).padStart(2,"0");}
+function fmtDate(s){const p=s.split("-");return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+p[1]-1]+" "+(+p[2]);}
+function itemsOn(s){return DATA.filter(d=>d.d===s);}
+function sameDay(a,b){return a.getFullYear()==b.getFullYear()&&a.getMonth()==b.getMonth()&&a.getDate()==b.getDate();}
+function startOfWeek(dt){const x=new Date(dt);const wd=(x.getDay()+6)%7;x.setDate(x.getDate()-wd);return x;}
+function renderCal(){
+  const today=new Date();cal.innerHTML='';
+  if(calMode==="month"){
+    document.getElementById('callbl').textContent=MON[cursor.getMonth()]+" "+cursor.getFullYear();
+    let h='<div class="dow">'+DOW.map(d=>`<div>${d}</div>`).join('')+'</div><div class="month">';
+    const start=startOfWeek(new Date(cursor.getFullYear(),cursor.getMonth(),1));
+    for(let i=0;i<42;i++){const dt=new Date(start);dt.setDate(start.getDate()+i);
+      const out=dt.getMonth()!==cursor.getMonth(),td=sameDay(dt,today),its=itemsOn(key(dt));
+      let ev=its.slice(0,3).map(d=>`<div class="ev" style="background:${FSOFT[d.f]};border-left:3px solid ${FCOL[d.f]}" data-d="${d.d}|${d.t}">${d.t}</div>`).join('');
+      if(its.length>3)ev+=`<div class="ev" style="background:var(--panel)">+${its.length-3} more</div>`;
+      h+=`<div class="cell ${out?'out':''} ${td?'today':''}"><div class="dn">${dt.getDate()}</div>${ev}</div>`;}
+    cal.innerHTML=h+'</div>';
+  }else if(calMode==="week"){
+    const sw=startOfWeek(cursor),ew=new Date(sw);ew.setDate(sw.getDate()+6);
+    document.getElementById('callbl').textContent=fmtDate(key(sw))+" – "+fmtDate(key(ew));
+    let h='<div class="weekgrid">';
+    for(let i=0;i<7;i++){const dt=new Date(sw);dt.setDate(sw.getDate()+i);const td=sameDay(dt,today),its=itemsOn(key(dt));
+      let ev=its.map(d=>`<div class="ev2" style="background:${FSOFT[d.f]};border-left:3px solid ${FCOL[d.f]}" data-d="${d.d}|${d.t}">${d.t}<small>${d.fmt}</small></div>`).join('');
+      h+=`<div class="wcol ${td?'today':''}"><div class="wh">${DOW[i]}<span>${fmtDate(key(dt))}</span></div>${ev}</div>`;}
+    cal.innerHTML=h+'</div>';
+  }else{
+    document.getElementById('callbl').textContent=DOW[(cursor.getDay()+6)%7]+", "+fmtDate(key(cursor));
+    const its=itemsOn(key(cursor));
+    if(!its.length){cal.innerHTML='<div class="emptyday">Nothing scheduled for this day.</div>';return;}
+    let h='<div class="dayview">';
+    its.forEach(d=>{const th=d.f==="reel"?`<div class="th"><img src="${d.img}"></div>`:d.f==="carousel"?`<div class="th"><img src="${d.img}"></div>`:`<div class="th" style="background:${FCOL[d.f]};display:grid;place-items:center;color:#fff">${ICON[d.f]}</div>`;
+      h+=`<div class="dayrow" data-d="${d.d}|${d.t}">${th}<div><div class="dt">${d.t}</div><div class="dm">${d.fmt} · ${d.theme}</div></div></div>`;});
+    cal.innerHTML=h+'</div>';
+  }
+  cal.querySelectorAll('[data-d]').forEach(el=>el.onclick=()=>{const[dd,tt]=el.dataset.d.split("|");const it=DATA.find(x=>x.d===dd&&x.t===tt);if(it)openModal(it);});
+}
+const lib=document.getElementById('lib'),rep=document.getElementById('rep'),legendEl=document.querySelector('.legend');
+let view="board";
+function setView(v){view=v;
+  document.querySelectorAll('#topnav a').forEach(a=>a.classList.toggle('on',a.dataset.v===v));
+  board.style.display=v==="board"?"flex":"none";
+  cal.style.display=v==="calendar"?"block":"none";
+  lib.style.display=v==="library"?"grid":"none";
+  rep.style.display=v==="reports"?"grid":"none";
+  document.getElementById('calnav').style.display=v==="calendar"?"flex":"none";
+  if(legendEl)legendEl.style.display=v==="reports"?"none":"flex";
+  if(v==="calendar")renderCal();
+  if(v==="library")renderLibrary();
+  if(v==="reports")renderReports();
+}
+document.getElementById('topnav').addEventListener('click',e=>{const a=e.target.closest('a');if(a&&a.dataset.v){e.preventDefault();setView(a.dataset.v);}});
+function renderLibrary(){
+  lib.innerHTML='';
+  DATA.forEach(d=>{const card=document.createElement('div');card.className='card';
+    card.innerHTML=`${cover(d)}<div class="cbody"><div class="ct">${d.t}</div><div class="cm"><span>${d.theme}</span><span>${fmtDate(d.d)}</span></div></div>`;
+    card.onclick=()=>openModal(d);lib.appendChild(card);});
+}
+function bar(label,val,max,color){const pct=max?Math.round(val/max*100):0;return `<div class="barrow"><span class="bl">${label}</span><span class="bartrack"><span class="barfill" style="width:${pct}%;background:${color}"></span></span><span class="bv">${val}</span></div>`;}
+function renderReports(){
+  const fmt={reel:0,carousel:0,blog:0,email:0},st={drafting:0,ready:0,scheduled:0,published:0},th={};
+  DATA.forEach(d=>{fmt[d.f]=(fmt[d.f]||0)+1;st[d.s]=(st[d.s]||0)+1;th[d.theme]=(th[d.theme]||0)+1;});
+  const fmax=Math.max(1,...Object.values(fmt)),smax=Math.max(1,...Object.values(st)),tmax=Math.max(1,...Object.values(th));
+  rep.innerHTML=`
+   <div class="repcard"><h3>By format</h3>
+     ${bar('Reels',fmt.reel,fmax,FCOL.reel)}${bar('Carousels',fmt.carousel,fmax,FCOL.carousel)}${bar('Blogs',fmt.blog,fmax,FCOL.blog)}${bar('Emails',fmt.email,fmax,FCOL.email)}</div>
+   <div class="repcard"><h3>By status</h3>
+     ${bar('Drafting',st.drafting,smax,'var(--s-draft)')}${bar('Ready to post',st.ready,smax,'var(--s-ready)')}${bar('Scheduled',st.scheduled,smax,'var(--s-sched)')}${bar('Published',st.published,smax,'var(--s-pub)')}</div>
+   <div class="repcard" style="grid-column:1/-1"><h3>By theme</h3>
+     ${Object.entries(th).sort((a,b)=>b[1]-a[1]).map(([k,v])=>bar(k,v,tmax,'var(--ink-d)')).join('')}</div>`;
+}
+document.getElementById('calmodeseg').onclick=e=>{if(!e.target.dataset.m)return;calMode=e.target.dataset.m;
+  document.querySelectorAll('#calmodeseg button').forEach(b=>b.classList.toggle('on',b.dataset.m===calMode));renderCal();};
+document.getElementById('prev').onclick=()=>{if(calMode==="month")cursor.setMonth(cursor.getMonth()-1);else cursor.setDate(cursor.getDate()-(calMode==="week"?7:1));renderCal();};
+document.getElementById('next').onclick=()=>{if(calMode==="month")cursor.setMonth(cursor.getMonth()+1);else cursor.setDate(cursor.getDate()+(calMode==="week"?7:1));renderCal();};
+document.getElementById('todayBtn').onclick=()=>{cursor=new Date();renderCal();};
+const ovl=document.getElementById('ovl'),mbody=document.getElementById('mbody');
+function openModal(d){
+  document.getElementById('mtitle').textContent=d.t;document.getElementById('msub').textContent=d.fmt+"  ·  "+d.theme+"  ·  "+fmtDate(d.d);
+  if(d.f==="reel"&&d.vid)mbody.innerHTML=`<video class="reelvid" src="${d.vid}" poster="${d.img}" controls autoplay muted loop playsinline></video>`; else if(d.f==="reel")mbody.innerHTML=`<img src="${d.img}" style="width:100%;border-radius:14px;display:block">`;
+  else if(d.f==="carousel"&&d.deck)mbody.innerHTML=`<div class="slides">${DECK.map(s=>`<img src="${s}">`).join('')}</div><div class="swipehint">Swipe · 6-slide carousel in your brand</div>`;
+  else if(d.f==="carousel")mbody.innerHTML=`<img src="${d.img}" style="width:100%;border-radius:14px;display:block"><div class="swipehint">6-slide carousel · on your photography</div>`;
+  else if(d.body)mbody.innerHTML=d.body;
+  else mbody.innerHTML=`<div style="padding:44px;text-align:center;color:var(--sub)">${d.f==="email"?"Email":"Long-form blog"} draft in progress.</div>`;
+  renderFeedback(d);
+  ovl.classList.add('open');
+}
+function closeModal(){ovl.classList.remove('open');mbody.innerHTML='';}
+document.getElementById('x').onclick=closeModal;ovl.onclick=e=>{if(e.target===ovl)closeModal();};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+renderBoard();
+const VIEWS=['board','calendar','library','reports'];
+const initial=VIEWS.includes(location.hash.slice(1))?location.hash.slice(1):'board';
+setView(initial);
+window.addEventListener('hashchange',()=>{const h=location.hash.slice(1);if(VIEWS.includes(h))setView(h);});
+document.getElementById('topnav').addEventListener('click',e=>{const a=e.target.closest('a');if(a&&a.dataset.v)location.hash=a.dataset.v;});
+</script>
+</body>
+</html>
