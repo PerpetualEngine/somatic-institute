@@ -1,0 +1,52 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Your content · Somatic Institute for Women</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#1c1a17;--paper:#f5f1ea;--green:#3f5b3b;--green2:#2c3f29;--gold:#c9a25a}
+body{font-family:Georgia,"Times New Roman",serif;background:#0e0d0c;color:var(--paper);min-height:100vh;display:flex;flex-direction:column;align-items:center}
+.wrap{width:100%;max-width:480px;padding:22px 18px 40px}
+.brand{text-align:center;letter-spacing:.28em;font-size:11px;text-transform:uppercase;color:var(--gold);margin:6px 0 18px;font-family:-apple-system,Helvetica,Arial,sans-serif}
+h1{font-size:25px;line-height:1.25;text-align:center;font-weight:400;margin-bottom:4px}
+.sub{text-align:center;color:#b9b2a6;font-size:13px;font-style:italic;margin-bottom:18px}
+.vid{width:100%;border-radius:16px;overflow:hidden;background:#000;box-shadow:0 10px 40px rgba(0,0,0,.6);aspect-ratio:9/16}
+video{width:100%;height:100%;object-fit:cover;display:block}
+.ask{text-align:center;margin:24px 0 14px;font-size:15px;color:#e8e2d6;font-family:-apple-system,Helvetica,Arial,sans-serif}
+.btns{display:flex;flex-direction:column;gap:11px}
+a.btn{display:flex;align-items:center;justify-content:center;gap:9px;padding:15px;border-radius:13px;text-decoration:none;font-weight:700;font-size:16px;font-family:-apple-system,Helvetica,Arial,sans-serif}
+.approve{background:#25D366;color:#fff}
+.change{background:transparent;color:#e8e2d6;border:1.5px solid #5b574e}
+.foot{text-align:center;color:#6f6a60;font-size:11px;margin-top:26px;font-family:-apple-system,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+</style></head><body>
+<div class="wrap">
+  <div class="brand">Somatic Institute for Women</div>
+  <h1 id="title">Your content</h1>
+  <div class="sub" id="sub"></div>
+  <div class="vid"><video id="v" controls playsinline preload="metadata"></video></div>
+  <div class="ask">Does this feel aligned with your voice?</div>
+  <div class="btns">
+    <a class="btn approve" id="approve">✅ Approve &amp; schedule</a>
+    <a class="btn change" id="change">✎ Request a small change</a>
+  </div>
+  <div class="foot">Crafted by Perpetual Engine · in your words</div>
+</div>
+<script>
+// Eric's WhatsApp for approvals to land in:
+var ERIC="66945854976";
+var PIECES={
+  anchor:{title:"The Anchor &amp; the Felt Sense",file:"anchor.mp4",sub:"Reel · the body as your ground"},
+  regulation:{title:"Regulation Was Never Meant to Be Calm",file:"regulation.mp4",sub:"Reel · what a regulated nervous system really is"},
+  sensuality:{title:"Sensuality Is Your Birthright",file:"sensuality.mp4",sub:"Reel · sensuality is not sexuality"}
+};
+function qp(k){return new URLSearchParams(location.search).get(k);}
+var key=qp("v")||"anchor";
+var p=PIECES[key]||PIECES.anchor;
+document.getElementById("title").innerHTML=p.title;
+document.getElementById("sub").textContent=p.sub;
+document.getElementById("v").src=p.file;
+var plain=p.title.replace(/&amp;/g,"&");
+document.getElementById("approve").href="https://wa.me/"+ERIC+"?text="+encodeURIComponent('✅ Approved: "'+plain+'" — looks aligned, good to schedule. 🌿');
+document.getElementById("change").href="https://wa.me/"+ERIC+"?text="+encodeURIComponent('✎ On "'+plain+'" I’d love one change: ');
+</script>
+</body></html>
