@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your email engine · Somatic Institute for Women · Perpetual Engine</title>
+<style>
+  :root{--green:#c9f57e;--green-ink:#0d3300;--green-deep:#4e8c12;--ink:#18191b;--sub:#5c5a54;--line:#e7e4dd;--bg:#fff;--panel:#f6f7f2;--sh:0 2px 10px rgba(20,20,15,.05);--sh-h:0 16px 44px rgba(20,20,15,.12)}
+  *{margin:0;box-sizing:border-box}
+  body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5;letter-spacing:-.011em}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+  a{color:inherit}
+  header{border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;gap:11px;height:64px}
+  .pe{width:30px;height:30px;border-radius:9px;background:var(--ink);color:var(--green);display:grid;place-items:center;font-weight:700;font-size:13px}
+  .wordmark{font-size:16px;font-weight:700}
+  .prep{margin-left:auto;font-size:12.5px;font-weight:600;color:var(--sub)}
+
+  .hero{text-align:center;padding:64px 0 6px}
+  .eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green-deep);background:var(--green);padding:6px 13px;border-radius:999px;margin-bottom:20px}
+  .hero h1{font-size:clamp(30px,4.8vw,46px);line-height:1.04;letter-spacing:-.03em;font-weight:700;max-width:16ch;margin:0 auto}
+  .hero p{font-size:17px;color:var(--sub);max-width:58ch;margin:18px auto 0}
+
+  /* 80/20 band */
+  .eighty{background:var(--panel);border-radius:22px;padding:34px 30px 30px;margin:44px 0 14px}
+  .eighty .lead{text-align:center;max-width:62ch;margin:0 auto 26px}
+  .eighty .lead .k{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green-deep)}
+  .eighty .lead h2{font-size:23px;font-weight:700;letter-spacing:-.02em;margin-top:10px}
+  .eighty .lead p{font-size:14.5px;color:var(--sub);margin-top:8px}
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .big{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 20px}
+  .big .rank{font-size:12px;font-weight:700;color:var(--green-deep);letter-spacing:.04em}
+  .big h3{font-size:17px;font-weight:700;margin:6px 0 6px}
+  .big p{font-size:13px;color:var(--sub);line-height:1.45}
+
+  /* section heads */
+  .shead{text-align:center;padding:52px 0 6px}
+  .shead .k{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green-deep)}
+  .shead h2{font-size:26px;font-weight:700;letter-spacing:-.025em;margin-top:9px}
+  .shead p{font-size:14.5px;color:var(--sub);max-width:56ch;margin:9px auto 0}
+
+  /* flow cards */
+  .flows{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;padding:24px 0 6px}
+  .flow{border:1px solid var(--line);border-radius:18px;padding:24px 22px;box-shadow:var(--sh);background:#fff;display:flex;flex-direction:column}
+  .flow.hi{border:2px solid var(--green);box-shadow:var(--sh-h)}
+  .ftop{display:flex;align-items:flex-start;gap:12px}
+  .fic{flex:none;width:40px;height:40px;border-radius:12px;background:var(--green);display:grid;place-items:center}
+  .fic svg{width:20px;height:20px;stroke:var(--green-ink);stroke-width:1.8;fill:none}
+  .fname{font-size:18px;font-weight:700;letter-spacing:-.01em}
+  .fmeta{font-size:12px;color:var(--green-deep);font-weight:700;margin-top:2px}
+  .ftrig{font-size:13px;color:var(--sub);margin-top:13px;line-height:1.45}
+  .ftrig b{color:var(--ink);font-weight:700}
+  .seq{list-style:none;margin-top:14px;display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line);padding-top:4px}
+  .seq li{display:flex;gap:12px;font-size:13px;line-height:1.4;padding:9px 0;border-bottom:1px solid var(--line)}
+  .seq li:last-child{border-bottom:none}
+  .seq .when{flex:none;width:64px;font-weight:700;color:var(--green-deep);font-size:11.5px;padding-top:1px}
+  .seq .what b{font-weight:700}
+  .seq .what span{color:var(--sub);display:block;margin-top:1px}
+  .job{margin-top:14px;font-size:12.5px;color:var(--ink);background:var(--panel);border-radius:11px;padding:11px 13px;line-height:1.45}
+  .job b{color:var(--green-deep)}
+
+  /* written-out sample */
+  .sample{background:var(--ink);color:#fff;border-radius:24px;padding:44px 34px;margin:56px 0 14px}
+  .sample .k{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green);text-align:center}
+  .sample h2{font-size:26px;font-weight:700;letter-spacing:-.025em;text-align:center;margin-top:10px}
+  .sample .sub{text-align:center;color:#b9b7b0;font-size:14.5px;max-width:56ch;margin:10px auto 30px}
+  .subjects{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:26px}
+  .subj{background:#232427;border:1px solid #34363a;border-radius:13px;padding:15px 15px}
+  .subj .step{font-size:11px;color:var(--green);font-weight:700;letter-spacing:.05em}
+  .subj .line{font-size:13.5px;font-weight:600;margin-top:8px;line-height:1.35}
+  .subj .send{font-size:11px;color:#8d8b85;margin-top:9px}
+  .letter{background:#fff;color:var(--ink);border-radius:18px;padding:30px 30px;max-width:640px;margin:0 auto}
+  .letter .tag{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green-deep)}
+  .letter h3{font-size:20px;font-weight:700;letter-spacing:-.02em;margin:8px 0 16px}
+  .letter p{font-size:14.5px;line-height:1.62;color:#2c2b28;margin-bottom:13px}
+  .letter .door{display:inline-block;margin-top:6px;font-size:14px;font-weight:700;color:var(--green-deep)}
+  .letter .fine{font-size:12px;color:var(--sub);margin-top:16px;border-top:1px solid var(--line);padding-top:12px}
+
+  /* benchmarks */
+  .bench{margin:56px 0 6px}
+  .btable{border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--sh)}
+  .brow{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.6fr;align-items:center}
+  .brow>div{padding:14px 18px;font-size:13.5px;border-bottom:1px solid var(--line)}
+  .brow.head>div{background:var(--panel);font-weight:700;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--green-deep)}
+  .brow:last-child>div{border-bottom:none}
+  .brow .metric{font-weight:700}
+  .brow .avg{color:var(--sub)}
+  .brow .top{font-weight:700;color:var(--green-deep)}
+  .brow .track{color:var(--sub);font-size:13px}
+  .bnote{font-size:12.5px;color:var(--sub);text-align:center;margin-top:16px;max-width:64ch;margin-left:auto;margin-right:auto}
+
+  /* timing strip */
+  .timing{background:var(--panel);border-radius:22px;padding:34px 30px;margin:52px 0 6px}
+  .timing h2{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green-deep);text-align:center;margin-bottom:22px}
+  .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .tcell{background:#fff;border:1px solid var(--line);border-radius:13px;padding:15px 16px}
+  .tcell b{font-size:14px;font-weight:700;display:block}
+  .tcell span{font-size:12.5px;color:var(--sub);display:block;margin-top:3px}
+
+  .close{text-align:center;padding:52px 0 26px}
+  .close h3{font-size:26px;font-weight:700;letter-spacing:-.02em;margin-bottom:6px;max-width:22ch;margin-left:auto;margin-right:auto}
+  .close p{color:var(--sub);font-size:15px;margin-bottom:22px}
+  .btn{display:inline-block;text-decoration:none;font-size:15px;font-weight:700;padding:14px 30px;border-radius:999px;background:var(--green);color:var(--green-ink)}
+  footer{border-top:1px solid var(--line);padding:22px 0;color:var(--sub);font-size:13px;display:flex;justify-content:space-between}
+
+  @media(max-width:880px){
+    .three{grid-template-columns:1fr}
+    .flows{grid-template-columns:1fr;max-width:480px;margin:0 auto}
+    .subjects{grid-template-columns:1fr 1fr}
+    .brow{grid-template-columns:1.4fr 1fr}
+    .brow .avg,.brow .top{display:none}
+    .brow.head .avg,.brow.head .top{display:none}
+    .tgrid{grid-template-columns:1fr}
+    .sample{padding:34px 20px}
+    footer{flex-direction:column;gap:6px;text-align:center}
+  }
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+  <div class="pe">PE</div><div class="wordmark">Perpetual Engine</div>
+  <span class="prep">Prepared for Somatic Institute for Women</span>
+</div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <span class="eyebrow">The Sales Engine · Email</span>
+    <h1>The letters that send themselves.</h1>
+    <p>Your flows are the emails that go out on their own — the moment a woman joins your list, lingers on a program, or steps away for a while. Built once, in your voice. Then they work while you sleep. Here is the whole system, mapped for the Institute.</p>
+  </section>
+
+  <!-- 80/20 -->
+  <section class="eighty">
+    <div class="lead">
+      <div class="k">The 80/20</div>
+      <h2>Three flows do most of the quiet work.</h2>
+      <p>Across automated email, a handful of sequences carry the weight. We build these first, to a finish, before we touch anything else. For a teaching-and-community practice like yours, they translate cleanly.</p>
+    </div>
+    <div class="three">
+      <div class="big">
+        <div class="rank">Flow no. 1 · highest volume</div>
+        <h3>Welcome</h3>
+        <p>Every woman who finds you meets this first. It turns a new name on the list into someone who feels at home — and takes her first real step.</p>
+      </div>
+      <div class="big">
+        <div class="rank">Flow no. 2 · highest intent</div>
+        <h3>She considered, then paused</h3>
+        <p>The e-commerce world calls this abandoned cart. For you it is the woman who began joining the community or a program and stopped at the threshold. Warmest audience you have.</p>
+      </div>
+      <div class="big">
+        <div class="rank">Flow no. 3 · the curious</div>
+        <h3>She looked, quietly</h3>
+        <p>Browse abandonment. She read the page, watched most of the video, felt the pull — and clicked away. This catches her in the window while the door is still warm.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORE SIX -->
+  <section class="shead">
+    <div class="k">The system</div>
+    <h2>The core six</h2>
+    <p>Every store-shaped flow, translated to a practice that sells transformation and belonging — not products in a cart.</p>
+  </section>
+
+  <section class="flows">
+
+    <!-- WELCOME -->
+    <div class="flow hi">
+      <div class="ftop">
+        <div class="fic"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M4 7l8 6 8-6"/></svg></div>
+        <div><div class="fname">Welcome</div><div class="fmeta">6 emails · over 7 days</div></div>
+      </div>
+      <div class="ftrig"><b>Starts when</b> a woman joins your list — a free practice, the newsletter, a quiz.</div>
+      <ul class="seq">
+        <li><span class="when">Minute&nbsp;0</span><span class="what"><b>The practice, and a welcome</b><span>Deliver what she came for. "You're home."</span></span></li>
+        <li><span class="when">Day 1</span><span class="what"><b>Why this exists</b><span>The founder's story. Why women, why the body.</span></span></li>
+        <li><span class="when">Day 2</span><span class="what"><b>One thing she can feel today</b><span>A real practice, not a promise.</span></span></li>
+        <li><span class="when">Day 4</span><span class="what"><b>What the community is</b><span>Who it's for, what a week inside feels like.</span></span></li>
+        <li><span class="when">Day 6</span><span class="what"><b>A woman's return</b><span>One story of coming home to herself.</span></span></li>
+        <li><span class="when">Day 7</span><span class="what"><b>The first soft door</b><span>The invitation to step in.</span></span></li>
+      </ul>
+      <div class="job"><b>The job:</b> turn a new name into a first "yes." Highest volume of anything you send.</div>
+    </div>
+
+    <!-- CONSIDERED / abandoned cart -->
+    <div class="flow hi">
+      <div class="ftop">
+        <div class="fic"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1.2 9H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></div>
+        <div><div class="fname">She considered, then paused</div><div class="fmeta">4 emails · over 72 hours</div></div>
+      </div>
+      <div class="ftrig"><b>Starts when</b> she begins joining the community or a program and doesn't finish. <b>Your abandoned-cart flow.</b></div>
+      <ul class="seq">
+        <li><span class="when">1 hour</span><span class="what"><b>The door is still open</b><span>No pressure. One line back to where she was.</span></span></li>
+        <li><span class="when">Day 1</span><span class="what"><b>"Is this for me?"</b><span>Meet the quiet fear of being too much, or not enough.</span></span></li>
+        <li><span class="when">Day 2</span><span class="what"><b>What the first week feels like</b><span>Answer the time and space objection with a felt picture.</span></span></li>
+        <li><span class="when">Day 3</span><span class="what"><b>One small yes</b><span>A gentle final invitation. Name the cost of staying small.</span></span></li>
+      </ul>
+      <div class="job"><b>The job:</b> your highest-return sequence. She already reached for the door — this walks her through it.</div>
+    </div>
+
+    <!-- BROWSE -->
+    <div class="flow">
+      <div class="ftop">
+        <div class="fic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16 16l4 4"/></svg></div>
+        <div><div class="fname">She looked, quietly</div><div class="fmeta">3 emails · over 48 hours</div></div>
+      </div>
+      <div class="ftrig"><b>Starts when</b> she reads a program page or watches most of a video, then leaves. <b>Browse abandonment.</b></div>
+      <ul class="seq">
+        <li><span class="when">4 hours</span><span class="what"><b>Reflect it back</b><span>Name the idea she was drawn to. Offer one practice.</span></span></li>
+        <li><span class="when">Day 1</span><span class="what"><b>Go one layer deeper</b><span>Teach the thing she was circling. One soft door.</span></span></li>
+        <li><span class="when">Day 2</span><span class="what"><b>The invitation</b><span>Where this work lives, if she wants company.</span></span></li>
+      </ul>
+      <div class="job"><b>The job:</b> catch the high-intent window while the pull is still warm, before the day carries her off.</div>
+    </div>
+
+    <!-- POST PURCHASE / welcome home -->
+    <div class="flow">
+      <div class="ftop">
+        <div class="fic"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/></svg></div>
+        <div><div class="fname">Welcome home</div><div class="fmeta">6 emails · over 21 days</div></div>
+      </div>
+      <div class="ftrig"><b>Starts when</b> she joins — the community or a program. <b>Post-purchase, softened.</b></div>
+      <ul class="seq">
+        <li><span class="when">Day 0</span><span class="what"><b>You're in — start here</b><span>One small first step, not the whole map.</span></span></li>
+        <li><span class="when">Day 2</span><span class="what"><b>The practice to begin with</b><span>Ease the "did I choose right?" quietly.</span></span></li>
+        <li><span class="when">Day 5</span><span class="what"><b>How to be in the circle</b><span>Her first real experience with other women.</span></span></li>
+        <li><span class="when">Day 10</span><span class="what"><b>A deeper teaching</b><span>Reward the commitment. Take her further.</span></span></li>
+        <li><span class="when">Day 16</span><span class="what"><b>What's shifting?</b><span>Name the first change. Invite her to notice.</span></span></li>
+        <li><span class="when">Day 21</span><span class="what"><b>Bring a woman with you</b><span>The ripple. Seed the first referral.</span></span></li>
+      </ul>
+      <div class="job"><b>The job:</b> turn a purchase into a practice. The first three weeks decide whether she stays.</div>
+    </div>
+
+    <!-- WINBACK -->
+    <div class="flow">
+      <div class="ftop">
+        <div class="fic"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 3-6.2"/><path d="M4 4v4h4"/></svg></div>
+        <div><div class="fname">The door is still open</div><div class="fmeta">4 emails · from Day 60</div></div>
+      </div>
+      <div class="ftrig"><b>Starts when</b> a member lapses or a subscriber goes quiet for ~60 days. <b>Winback, without shame.</b></div>
+      <ul class="seq">
+        <li><span class="when">Day 60</span><span class="what"><b>Thinking of you</b><span>No guilt. Just what's new since she stepped away.</span></span></li>
+        <li><span class="when">Day 67</span><span class="what"><b>A practice, as a gift</b><span>Give first. Ask for nothing.</span></span></li>
+        <li><span class="when">Day 74</span><span class="what"><b>A story of return</b><span>A woman who came back, and what changed.</span></span></li>
+        <li><span class="when">Day 81</span><span class="what"><b>The door is still open</b><span>A gentle way back in.</span></span></li>
+      </ul>
+      <div class="job"><b>The job:</b> re-open a relationship that already exists. Far cheaper than finding a new woman.</div>
+    </div>
+
+    <!-- SUNSET -->
+    <div class="flow">
+      <div class="ftop">
+        <div class="fic"><svg viewBox="0 0 24 24"><path d="M4 18h16"/><path d="M12 4v6"/><path d="M8 8l4 3 4-3"/><path d="M6 18a6 6 0 0 1 12 0"/></svg></div>
+        <div><div class="fname">A gentle goodbye</div><div class="fmeta">3 emails · over 7 days</div></div>
+      </div>
+      <div class="ftrig"><b>Starts when</b> she hasn't opened in a long while. <b>Sunset — this protects your name.</b></div>
+      <ul class="seq">
+        <li><span class="when">Day 0</span><span class="what"><b>Still want these letters?</b><span>One click to stay. Honest and warm.</span></span></li>
+        <li><span class="when">Day 3</span><span class="what"><b>One last practice</b><span>What she'd be leaving. Given freely.</span></span></li>
+        <li><span class="when">Day 7</span><span class="what"><b>We'll quiet things for now</b><span>Graceful removal. The door stays unlocked.</span></span></li>
+      </ul>
+      <div class="job"><b>The job:</b> letting go of the disengaged keeps you landing in the inboxes of the women who <b>do</b> open.</div>
+    </div>
+
+  </section>
+
+  <!-- FLOWS MOST SKIP -->
+  <section class="shead">
+    <div class="k">The edge</div>
+    <h2>The flows most practices skip</h2>
+    <p>These are where the Sales Engine pulls ahead. Each maps a store flow to a moment that already exists in your world.</p>
+  </section>
+
+  <section class="flows">
+
+    <div class="flow">
+      <div class="ftop">
+        <div class="fic"><svg viewBox="0 0 24 24"><path d="M12 3v4"/><path d="M12 17v4"/><path d="M3 12h4"/><path d="M17 12h4"/><circle cx="12" cy="12" r="3.5"/></svg></div>
+        <div><div class="fname">Doors are open</div><div class="fmeta">the waitlist flow · highest intent of all</div></div>
+      </div>
+      <div class="ftrig"><b>Back-in-stock, for you.</b> When a cohort reopens or a waitlist clears, the women waiting are the warmest audience you will ever email.</div>
+      <div class="job"><b>Why it matters:</b> in stores this is the single highest-return flow. Yours is the enrollment-reopens note to a list of women who already raised their hand.</div>
+    </div>
+
+    <div class="flow">
+      <div class="ftop">
+        <div class="fic"><svg viewBox="0 0 24 24"><path d="M12 4a8 8 0 1 0 8 8"/><path d="M12 4v8l5 3"/></svg></div>
+        <div><div class="fname">Renewal &amp; re-enrollment</div><div class="fmeta">the replenishment flow · timed to your cycle</div></div>
+      </div>
+      <div class="ftrig"><b>Replenishment, for you.</b> Membership renewals and the return of a seasonal program, sent right as the last one completes its arc.</div>
+      <div class="job"><b>Why it matters:</b> timed to the rhythm she's already in, renewal feels like the next breath, not a bill.</div>
+    </div>
+
+    <div class="flow">
+      <div class="ftop">
+        <div class="fic"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 12h6M9 16h4"/><path d="M9 8h3"/></svg></div>
+        <div><div class="fname">A way in</div><div class="fmeta">the price-drop flow · access, not discount</div></div>
+      </div>
+      <div class="ftrig"><b>Price-drop, for you.</b> Not marking the work down — a genuine access moment: founding-member pricing, a scholarship seat, a seasonal on-ramp.</div>
+      <div class="job"><b>Why it matters:</b> it lets a woman who couldn't say yes at full price still come home, without cheapening the work.</div>
+    </div>
+
+    <div class="flow">
+      <div class="ftop">
+        <div class="fic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M17 5l2 2 3-3"/></svg></div>
+        <div><div class="fname">Bring a woman with you</div><div class="fmeta">the referral flow · on-brand by nature</div></div>
+      </div>
+      <div class="ftrig"><b>Post-purchase referral, for you.</b> The work is communal — "every act of homecoming ripples to every woman near you." Referral isn't bolted on here. It's the teaching.</div>
+      <div class="job"><b>Why it matters:</b> your most-aligned growth. A woman inviting a woman is the whole point, made into a flow.</div>
+    </div>
+
+  </section>
+
+  <!-- WRITTEN OUT SAMPLE -->
+  <section class="sample">
+    <div class="k">Written out</div>
+    <h2>What one flow actually sounds like</h2>
+    <p class="sub">The "she considered, then paused" sequence — your abandoned-cart flow — in the Institute's voice. Four subject lines, and the second letter in full.</p>
+
+    <div class="subjects">
+      <div class="subj"><div class="step">Email 1 · 1 hour</div><div class="line">The door is still open</div><div class="send">Soft. One line back in.</div></div>
+      <div class="subj"><div class="step">Email 2 · Day 1</div><div class="line">In case you wondered if it's for you</div><div class="send">The full letter, below.</div></div>
+      <div class="subj"><div class="step">Email 3 · Day 2</div><div class="line">What the first week actually feels like</div><div class="send">Answers the real objection.</div></div>
+      <div class="subj"><div class="step">Email 4 · Day 3</div><div class="line">Just for today, one small yes</div><div class="send">A gentle final door.</div></div>
+    </div>
+
+    <div class="letter">
+      <div class="tag">Email 2 · sent Day 1</div>
+      <h3>In case you wondered if it's for you</h3>
+      <p>You came close the other day. You read, you felt something, and then you stepped back. I want you to know that stepping back is its own kind of honesty, and you are welcome here whenever you return.</p>
+      <p>If a quiet voice told you that you might be too much for this — too intense, too hungry, too alive — that is exactly the voice we work with. And if it told you the opposite, that you are not far enough along, not ready, not one of <em>those</em> women — that voice is welcome too. Both of them learned, somewhere, that it was safer to stay small.</p>
+      <p>This is not a room you have to arrive polished for. It is a room where women practice coming home to the parts of themselves they folded away. You do not need to be sure. You only need to be curious.</p>
+      <p>Just for today, notice one moment where you made yourself smaller than you are. You don't have to change it. Only see it.</p>
+      <a class="door" href="#">And when you're ready, the door is here &rsaquo;</a>
+      <div class="fine">Written from one Shadow Side teaching video — her words, her voice, held to the same test as every other piece: does this sound like her?</div>
+    </div>
+  </section>
+
+  <!-- BENCHMARKS -->
+  <section class="bench">
+    <div class="shead" style="padding-top:0">
+      <div class="k">The numbers</div>
+      <h2>The benchmarks we build toward</h2>
+      <p>2026 industry data, and what we instrument and hold your engine to. These are targets we measure against, not promises — the account is wired so we can see them.</p>
+    </div>
+    <div class="btable">
+      <div class="brow head"><div>What we measure</div><div class="avg">Average</div><div class="top">Top 10%</div><div>What it means for you</div></div>
+      <div class="brow"><div class="metric">Email as % of total revenue</div><div class="avg">27%</div><div class="top">33%+</div><div class="track">A third of program &amp; community income, from the list.</div></div>
+      <div class="brow"><div class="metric">Flows as % of email revenue</div><div class="avg">37–41%</div><div class="top">50%+</div><div class="track">Half of email income earned by letters you never touch.</div></div>
+      <div class="brow"><div class="metric">Welcome — revenue per woman</div><div class="avg">$2.65</div><div class="top">$21.21</div><div class="track">What each new name is worth as she meets you.</div></div>
+      <div class="brow"><div class="metric">Considered / paused — per woman</div><div class="avg">$3.65</div><div class="top">$28.89</div><div class="track">Your richest flow. She already reached for the door.</div></div>
+      <div class="brow"><div class="metric">Flow click rate</div><div class="avg">5.58%</div><div class="top">10%+</div><div class="track">How often a letter earns a real step, not just an open.</div></div>
+    </div>
+    <p class="bnote">Store benchmarks measure dollars per recipient. We track the same for your paid programs, and pair it with join-rate and click-rate so the engine is judged on movement, not vanity opens.</p>
+  </section>
+
+  <!-- TIMING SUMMARY -->
+  <section class="timing">
+    <h2>The cadence, at a glance</h2>
+    <div class="tgrid">
+      <div class="tcell"><b>Welcome</b><span>6 emails over 7 days</span></div>
+      <div class="tcell"><b>She considered, then paused</b><span>4 emails over 72 hours</span></div>
+      <div class="tcell"><b>She looked, quietly</b><span>3 emails over 48 hours</span></div>
+      <div class="tcell"><b>Welcome home</b><span>6 emails over 21 days</span></div>
+      <div class="tcell"><b>The door is still open</b><span>4 emails from Day 60</span></div>
+      <div class="tcell"><b>A gentle goodbye</b><span>3 emails over 7 days</span></div>
+    </div>
+  </section>
+
+  <section class="close">
+    <h3>This is the engine inside the Sales tier.</h3>
+    <p>Built once, in your voice, from the videos you already have. Then it runs — and we tend it, every month.</p>
+    <a class="btn" href="https://calendly.com/perpetualfunnels/30min">Map your email engine</a>
+  </section>
+</main>
+
+<footer><div class="wrap" style="display:flex;justify-content:space-between;width:100%;max-width:1080px;margin:0 auto">
+  <span>Perpetual Engine</span><span>Book a call · calendly.com/perpetualfunnels/30min</span>
+</div></footer>
+</body>
+</html>
