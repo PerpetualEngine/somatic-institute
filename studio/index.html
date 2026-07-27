@@ -1,0 +1,123 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Perpetual Engine — Backend</title>
+<style>
+*{margin:0;box-sizing:border-box}
+:root{--bg:#0f1210;--panel:#171b18;--card:#1e241f;--line:#2a322b;--ink:#eef2ec;--dim:#93a394;--green:#c9f57e;--green2:#3f5b3b}
+body{font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink);display:flex;min-height:100vh}
+a{color:inherit;text-decoration:none}
+/* sidebar */
+.side{width:230px;flex:none;background:var(--panel);border-right:1px solid var(--line);padding:18px 12px;position:sticky;top:0;height:100vh;overflow:auto}
+.brand{font-weight:800;font-size:15px;letter-spacing:.02em;padding:6px 10px 14px;color:var(--green)}
+.brand small{display:block;color:var(--dim);font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;margin-top:3px}
+.cl{display:flex;align-items:center;gap:9px;padding:10px 11px;border-radius:10px;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--dim)}
+.cl:hover{background:#212823;color:var(--ink)}
+.cl.on{background:#243026;color:var(--ink)}
+.cl .dot{width:8px;height:8px;border-radius:50%;flex:none;background:#4a5a4c}
+.cl.active .dot{background:var(--green)}
+.side .lbl{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#5d6b5e;padding:16px 11px 6px;font-weight:700}
+.side .util{font-size:12.5px;color:var(--dim);padding:8px 11px}
+.side .util a{color:var(--green)}
+/* main */
+.main{flex:1;padding:26px 30px 60px;max-width:1100px}
+.hd{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:4px}
+h1{font-size:23px}
+.pill{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;background:#243026;color:var(--green);border:1px solid var(--green2)}
+.sub{color:var(--dim);font-size:13.5px;margin-bottom:16px}
+.qlinks{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+.qlinks a{font-size:12.5px;font-weight:700;background:var(--card);border:1px solid var(--line);padding:9px 13px;border-radius:9px;color:var(--ink)}
+.qlinks a:hover{border-color:var(--green2)}
+.wh{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);font-weight:700;margin:8px 0 14px;border-top:1px solid var(--line);padding-top:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.card .thumb{position:relative;aspect-ratio:4/5;background:#000;cursor:pointer}
+.card .thumb img{width:100%;height:100%;object-fit:cover;display:block;opacity:.92}
+.card .thumb .play{position:absolute;inset:0;display:grid;place-items:center;font-size:34px;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+.card .body{padding:11px 12px 13px}
+.card .t{font-weight:700;font-size:13.5px;line-height:1.3}
+.card .f{color:var(--dim);font-size:11.5px;margin-top:4px}
+.card .btns{display:flex;gap:7px;margin-top:11px}
+.card .btns a{flex:1;text-align:center;font-size:11.5px;font-weight:700;padding:8px;border-radius:8px}
+.b-ed{background:var(--green);color:#14210a}
+.b-pl{background:#242c25;color:var(--ink);border:1px solid var(--line)}
+.empty{color:var(--dim);font-size:13.5px;background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:22px;text-align:center}
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;place-items:center;padding:20px;z-index:9}
+.modal.on{display:grid}
+.modal video{max-height:86vh;max-width:100%;border-radius:12px}
+.modal .cx{position:absolute;top:18px;right:22px;font-size:26px;color:#fff;cursor:pointer}
+</style></head><body>
+
+<div class="side">
+  <div class="brand">Perpetual Engine<small>Backend</small></div>
+  <div id="clients"></div>
+  <div class="lbl">Tools</div>
+  <div class="util"><a href="https://perpetualengine.github.io/somatic-institute/studio/editor.html">✂ Trim editor</a></div>
+  <div class="util"><a target="_blank" href="https://docs.google.com/spreadsheets/d/1OycH2V9NFTtEe--Kbjyln-1E0kaQ3SgqaZWiKRelYm8/edit">📊 Client CRM</a></div>
+</div>
+
+<div class="main" id="main"></div>
+
+<div class="modal" id="modal"><span class="cx" id="cx">✕</span><video id="mv" controls playsinline></video></div>
+
+<script>
+var EDITOR="https://perpetualengine.github.io/somatic-institute/studio/editor.html";
+var CLIENTS=[
+ {id:"sifw",name:"Somatic Institute for Women",who:"Maanee Chrystal",status:"active",
+  links:[["Client dashboard","https://perpetualengine.github.io/somatic-institute/workshop-1/"],
+         ["Sample page","https://perpetualengine.github.io/somatic-institute/sample/"],
+         ["Links Hub (Doc)","https://docs.google.com/document/d/1DnY8l9IsBP0UgbWDmAp93G0Uy4OCoLzNCuwedMAVB2w/edit"],
+         ["Send-to-Maanee","file:///Users/ericalessi/sifw-feed-mock/SEND-TO-MAANEE.html"]],
+  workshops:[
+   {name:"Workshop 1 — The Sensual Wound", base:"https://perpetualengine.github.io/somatic-institute/workshop-1/assets/",
+    clips:[
+     {t:"What sensuality actually is",fmt:"Reel · 0:42",n:"01",brief:"The bold claim: sensuality is not sexuality, it is your capacity to experience life through the body.",in:90,out:132.30,dur:222.32},
+     {t:"Remove the word sorry",fmt:"Reel · 0:28",n:"02",brief:"Delete one word from your body's vocabulary: sorry. You are not sorry for taking up space.",in:90,out:118.00,dur:208.00},
+     {t:"A sensual woman is difficult to control",fmt:"Reel · 1:22",n:"03",brief:"A sensual woman is hard to control because she lives in her embodied power. Sensuality is activism.",in:90,out:172.50,dur:262.52},
+     {t:"Feeling safe to feel",fmt:"Reel · 0:55",n:"04",brief:"The core: feeling safe to feel. We fear feeling because our culture never nurtured the sensitive body.",in:90,out:145.52,dur:235.52},
+     {t:"Knowing your nervous system gives you power",fmt:"Reel · 1:05",n:"05",brief:"Know your nervous system and you reclaim power: you can consciously release the tension survival taught your body.",in:90,out:155.12,dur:245.12},
+     {t:"Sensuality is how we make sense of reality",fmt:"Reel · 1:28",n:"06",brief:"The bold claim: sensuality is how we make sense of reality, lived through the body not the mind.",in:90,out:178.52,dur:268.52}
+    ]}
+  ]},
+ {id:"kobi",name:"Kobi",who:"@withkobi",status:"built",links:[],workshops:[]},
+ {id:"suna",name:"Suna Space",who:"sample not sent",status:"lead",links:[["Sample","https://perpetualengine.github.io/suna-space-preview/"]],workshops:[]},
+ {id:"natalie",name:"Natalie — Queendom",who:"sample not sent",status:"lead",links:[["Sample","https://perpetualengine.github.io/nq-content-preview/"]],workshops:[]},
+ {id:"behold",name:"Behold Retreats",who:"Danny · nurture",status:"lead",links:[],workshops:[]}
+];
+var active=CLIENTS[0];
+function renderSide(){
+ document.getElementById('clients').innerHTML=CLIENTS.map(function(c){
+   return '<div class="cl '+(c.id===active.id?'on active':'')+'" onclick="pick(\''+c.id+'\')"><span class="dot"></span>'+c.name+'</div>';
+ }).join('');
+}
+function pick(id){active=CLIENTS.filter(function(c){return c.id===id})[0];renderSide();renderMain();window.scrollTo(0,0);}
+function renderMain(){
+ var c=active,h='';
+ h+='<div class="hd"><h1>'+c.name+'</h1><span class="pill">'+c.status.toUpperCase()+'</span></div>';
+ h+='<div class="sub">'+c.who+'</div>';
+ if(c.links.length){h+='<div class="qlinks">'+c.links.map(function(l){return '<a target="_blank" href="'+l[1]+'">'+l[0]+' ↗</a>'}).join('')+'</div>';}
+ if(!c.workshops.length){h+='<div class="empty">No clips cut yet. Drop a tester video and run the engine — clips land here automatically.</div>';}
+ c.workshops.forEach(function(w){
+   h+='<div class="wh">'+w.name+' · '+w.clips.length+' clips</div><div class="grid">';
+   w.clips.forEach(function(cl){
+     var vid=w.base+'clip-'+cl.n+'.mp4', img=w.base+'poster-'+cl.n+'.jpg';
+     var edsrc=(cl.in!=null)?(w.base+'src-'+cl.n+'.mp4'):vid;
+     var edbrief=cl.brief||(cl.fmt+' · '+w.name);
+     var ed=EDITOR+'?client='+c.id+'&clip='+encodeURIComponent(edsrc)+'&title='+encodeURIComponent(cl.t)+'&brief='+encodeURIComponent(edbrief);
+     if(cl.in!=null) ed+='&in='+cl.in+'&out='+cl.out+'&dur='+cl.dur;
+     h+='<div class="card"><div class="thumb" onclick="play(\''+vid+'\')"><img src="'+img+'"><div class="play">▶</div></div>'+
+        '<div class="body"><div class="t">'+cl.t+'</div><div class="f">'+cl.fmt+'</div>'+
+        '<div class="btns"><a class="b-pl" onclick="play(\''+vid+'\')">▶ Preview</a>'+
+        '<a class="b-ed" target="_blank" href="'+ed+'">✂ Editor</a></div></div></div>';
+   });
+   h+='</div>';
+ });
+ document.getElementById('main').innerHTML=h;
+}
+function play(src){var m=document.getElementById('modal'),v=document.getElementById('mv');v.src=src;m.classList.add('on');v.play();}
+document.getElementById('cx').onclick=function(){var m=document.getElementById('modal'),v=document.getElementById('mv');v.pause();v.src='';m.classList.remove('on');};
+document.getElementById('modal').onclick=function(e){if(e.target.id==='modal')document.getElementById('cx').onclick();};
+renderSide();renderMain();
+</script>
+</body></html>
