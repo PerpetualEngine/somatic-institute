@@ -101,21 +101,31 @@ function renderMain(){
  c.workshops.forEach(function(w){
    h+='<div class="wh">'+w.name+' · '+w.clips.length+' clips</div><div class="grid">';
    w.clips.forEach(function(cl){
-     var vid=w.base+'clip-'+cl.n+'.mp4', img=w.base+'poster-'+cl.n+'.jpg';
-     var edsrc=(cl.in!=null)?(w.base+'src-'+cl.n+'.mp4'):vid;
+     var img=w.base+'poster-'+cl.n+'.jpg', finished=w.base+'clip-'+cl.n+'.mp4';
+     var padded=(cl.in!=null)?(w.base+'src-'+cl.n+'.mp4'):finished;
      var edbrief=cl.brief||(cl.fmt+' · '+w.name);
-     var ed=EDITOR+'?client='+c.id+'&clip='+encodeURIComponent(edsrc)+'&title='+encodeURIComponent(cl.t)+'&brief='+encodeURIComponent(edbrief);
+     var ed=EDITOR+'?client='+c.id+'&clip='+encodeURIComponent(padded)+'&title='+encodeURIComponent(cl.t)+'&brief='+encodeURIComponent(edbrief);
      if(cl.in!=null) ed+='&in='+cl.in+'&out='+cl.out+'&dur='+cl.dur;
-     h+='<div class="card"><div class="thumb" onclick="play(\''+vid+'\')"><img src="'+img+'"><div class="play">▶</div></div>'+
+     var lk=null; if(cl.in!=null){try{lk=JSON.parse(localStorage.getItem('cut:src-'+cl.n)||'null');}catch(e){}}
+     var pv,pin,pout,mine=false;
+     if(lk&&isFinite(lk.in)&&isFinite(lk.out)){pv=padded;pin=lk.in;pout=lk.out;mine=true;}else{pv=finished;pin='null';pout='null';}
+     var call='play(\''+pv+'\','+pin+','+pout+')';
+     var badge=mine?'<span style="position:absolute;left:8px;bottom:8px;background:#c9f57e;color:#14210a;font-size:10px;font-weight:800;padding:3px 7px;border-radius:6px;z-index:2">✏️ your cut · '+fmtLen(lk.out-lk.in)+'</span>':'';
+     h+='<div class="card"><div class="thumb" onclick="'+call+'"><img src="'+img+'"><div class="play">▶</div>'+badge+'</div>'+
         '<div class="body"><div class="t">'+cl.t+'</div><div class="f">'+cl.fmt+'</div>'+
-        '<div class="btns"><a class="b-pl" onclick="play(\''+vid+'\')">▶ Preview</a>'+
+        '<div class="btns"><a class="b-pl" onclick="'+call+'">▶ Preview</a>'+
         '<a class="b-ed" target="_blank" href="'+ed+'">✂ Editor</a></div></div></div>';
    });
    h+='</div>';
  });
  document.getElementById('main').innerHTML=h;
 }
-function play(src){var m=document.getElementById('modal'),v=document.getElementById('mv');v.src=src;m.classList.add('on');v.play();}
+function fmtLen(s){s=Math.max(0,Math.round(s));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');}
+function play(src,inS,outS){var m=document.getElementById('modal'),v=document.getElementById('mv');
+  v.ontimeupdate=null;v.onloadedmetadata=null;v.src=src;m.classList.add('on');
+  if(inS!=null&&isFinite(inS)){v.onloadedmetadata=function(){try{v.currentTime=inS;}catch(e){}};
+    if(outS!=null&&isFinite(outS))v.ontimeupdate=function(){if(v.currentTime>=outS)v.pause();};}
+  v.play();}
 document.getElementById('cx').onclick=function(){var m=document.getElementById('modal'),v=document.getElementById('mv');v.pause();v.src='';m.classList.remove('on');};
 document.getElementById('modal').onclick=function(e){if(e.target.id==='modal')document.getElementById('cx').onclick();};
 renderSide();renderMain();

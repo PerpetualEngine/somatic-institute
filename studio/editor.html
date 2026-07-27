@@ -99,12 +99,16 @@ h1{font-size:22px;letter-spacing:-.02em;margin-bottom:3px}.lede{color:var(--sub)
  window.SUG_IN=isFinite(pin)?pin:0; window.SUG_OUT=isFinite(pout)?pout:0; if(isFinite(pdur)) window.DUR=pdur;
  /* fallback: if no dur passed, take it from the video once known */
  if(v&&!isFinite(pdur)) v.addEventListener('loadedmetadata',function(){window.DUR=v.duration;});
+ /* if you already locked a cut for this clip, reopen on YOUR cut, not my suggestion */
+ try{var __k=decodeURIComponent(clip.split('/').pop()).replace(/\.mp4$/,'');
+     var __lk=JSON.parse(localStorage.getItem('cut:'+__k)||'null');
+     if(__lk&&isFinite(__lk.in)&&isFinite(__lk.out)) window.__LOCKED=__lk;}catch(e){}
 })();</script>
 <script>
 const CAPS=window.CAPS||[], SRC_START=window.SRC_START||0, SUG_IN=window.SUG_IN||0, SUG_OUT=window.SUG_OUT||0;
 const v=document.getElementById('v'),vcap=document.getElementById('vcap'),tl=document.getElementById('tl');
 const sel=document.getElementById('sel'),ph=document.getElementById('ph'),hin=document.getElementById('hin'),hout=document.getElementById('hout');
-let DUR=window.DUR||192, inT=SUG_IN, outT=SUG_OUT, playing=false;
+let DUR=window.DUR||192, inT=(window.__LOCKED?window.__LOCKED.in:SUG_IN), outT=(window.__LOCKED?window.__LOCKED.out:SUG_OUT), playing=false;
 // ---- caption karaoke (same as dashboard) ----
 function capWords(seg){if(seg._w)return seg._w;if(seg.w){seg._w=seg.w.map(a=>({ws:a[0],we:a[1],word:a[2]}));return seg._w;}const ws=(seg.t||'').split(/\s+/).filter(Boolean);const dur=Math.max(.01,seg.e-seg.s);const tot=ws.reduce((a,w)=>a+((w.replace(/[^\w']/g,'').length)||1),0)||1;let acc=seg.s;const arr=[];for(const w of ws){const wl=(w.replace(/[^\w']/g,'').length)||1;const we=acc+dur*(wl/tot);arr.push({ws:acc,we:we,word:w});acc=we;}seg._w=arr;return arr;}
 function renderCap(t){let seg=null;for(const s of CAPS){if(t>=s.s&&t<s.e){seg=s;break;}}if(!seg){vcap.innerHTML='';return;}let h='';for(const w of capWords(seg)){h+='<span class="kw'+((t>=w.ws&&t<w.we)?' on':'')+'">'+w.word+'</span> ';}vcap.innerHTML=h;}
