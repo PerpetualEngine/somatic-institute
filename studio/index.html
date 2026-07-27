@@ -110,7 +110,9 @@ function renderMain(){
      var pv,pin,pout,mine=false;
      if(lk&&isFinite(lk.in)&&isFinite(lk.out)){pv=padded;pin=lk.in;pout=lk.out;mine=true;}else{pv=finished;pin='null';pout='null';}
      var call='play(\''+pv+'\','+pin+','+pout+')';
-     var badge=mine?'<span style="position:absolute;left:8px;bottom:8px;background:#c9f57e;color:#14210a;font-size:10px;font-weight:800;padding:3px 7px;border-radius:6px;z-index:2">✏️ your cut · '+fmtLen(lk.out-lk.in)+'</span>':'';
+     var badge='';
+     if(mine){var bl=fmtLen(lk.out-lk.in);var bs='position:absolute;left:8px;bottom:8px;font-size:10px;font-weight:800;padding:3px 7px;border-radius:6px;z-index:2;';
+       badge=lk.approved?'<span style="'+bs+'background:#0d3300;color:#c9f57e">✓ Approved · '+bl+'</span>':'<span style="'+bs+'background:#c9f57e;color:#14210a">✏️ your cut · '+bl+'</span>';}
      h+='<div class="card"><div class="thumb" onclick="'+call+'"><img src="'+img+'"><div class="play">▶</div>'+badge+'</div>'+
         '<div class="body"><div class="t">'+cl.t+'</div><div class="f">'+cl.fmt+'</div>'+
         '<div class="btns"><a class="b-pl" onclick="'+call+'">▶ Preview</a>'+
