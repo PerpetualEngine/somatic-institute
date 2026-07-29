@@ -105,6 +105,9 @@ h1{font-size:22px;letter-spacing:-.02em;margin-bottom:3px}.lede{color:var(--sub)
  try{var __k=decodeURIComponent(clip.split('/').pop()).replace(/\.mp4$/,'');
      var __lk=JSON.parse(localStorage.getItem('cut:'+__k)||'null');
      if(__lk&&isFinite(__lk.in)&&isFinite(__lk.out)) window.__LOCKED=__lk;}catch(e){}
+ /* live karaoke: load this clip's word-timed captions */
+ var pcaps=p.get('caps');
+ if(pcaps){fetch(decodeURIComponent(pcaps)).then(function(r){return r.json();}).then(function(d){if(window.__setCaps)window.__setCaps(d);}).catch(function(){});}
 })();</script>
 <script>
 const CAPS=window.CAPS||[], SRC_START=window.SRC_START||0, SUG_IN=window.SUG_IN||0, SUG_OUT=window.SUG_OUT||0;
@@ -198,6 +201,7 @@ document.getElementById('saveclip').onclick=()=>{
   setTimeout(()=>{sb.textContent='✓ Save clip → send to review';sb.style.opacity='';},3200);
   box.scrollIntoView({behavior:'smooth',block:'center'});
 };
+window.__setCaps=function(arr){try{CAPS.length=0;Array.prototype.push.apply(CAPS,arr);}catch(e){}renderCap((v&&v.currentTime)||0);};
 paint();
 </script>
 </body></html>

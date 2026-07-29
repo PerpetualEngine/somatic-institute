@@ -105,7 +105,7 @@ function renderMain(){
      var padded=(cl.in!=null)?(w.base+'src-'+cl.n+'.mp4'):finished;
      var edbrief=cl.brief||(cl.fmt+' · '+w.name);
      var ed=EDITOR+'?client='+c.id+'&clip='+encodeURIComponent(padded)+'&title='+encodeURIComponent(cl.t)+'&brief='+encodeURIComponent(edbrief);
-     if(cl.in!=null) ed+='&in='+cl.in+'&out='+cl.out+'&dur='+cl.dur;
+     if(cl.in!=null) ed+='&in='+cl.in+'&out='+cl.out+'&dur='+cl.dur+'&caps='+encodeURIComponent(w.base+'caps-'+cl.n+'.json');
      var lk=null; if(cl.in!=null){try{lk=JSON.parse(localStorage.getItem('cut:src-'+cl.n)||'null');}catch(e){}}
      var pv,pin,pout,mine=false;
      if(lk&&isFinite(lk.in)&&isFinite(lk.out)){pv=padded;pin=lk.in;pout=lk.out;mine=true;}else{pv=finished;pin='null';pout='null';}
