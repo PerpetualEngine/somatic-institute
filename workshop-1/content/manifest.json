@@ -1,0 +1,113 @@
+{
+  "handle": "@somaticinstituteforwomen",
+  "format": "1080x1350",
+  "carousels": [
+    {
+      "n": 1,
+      "title": "Feeling safe to feel",
+      "first_line": "Somewhere along the way, you learned to feel from the neck up.",
+      "slides": 5,
+      "files": [
+        "content/carousels/c1/1.png",
+        "content/carousels/c1/2.png",
+        "content/carousels/c1/3.png",
+        "content/carousels/c1/4.png",
+        "content/carousels/c1/5.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Sensuality is not sexuality",
+      "first_line": "Sensuality is not sexuality. We were taught to confuse the two.",
+      "slides": 5,
+      "files": [
+        "content/carousels/c2/1.png",
+        "content/carousels/c2/2.png",
+        "content/carousels/c2/3.png",
+        "content/carousels/c2/4.png",
+        "content/carousels/c2/5.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Inhabiting your body",
+      "first_line": "Imagine standing outside your own home, and finally walking back in.",
+      "slides": 5,
+      "files": [
+        "content/carousels/c3/1.png",
+        "content/carousels/c3/2.png",
+        "content/carousels/c3/3.png",
+        "content/carousels/c3/4.png",
+        "content/carousels/c3/5.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "The beauty myth",
+      "first_line": "You were never sold a product. You were sold the feeling that you are not enough.",
+      "slides": 5,
+      "files": [
+        "content/carousels/c4/1.png",
+        "content/carousels/c4/2.png",
+        "content/carousels/c4/3.png",
+        "content/carousels/c4/4.png",
+        "content/carousels/c4/5.png"
+      ]
+    },
+    {
+      "n": 5,
+      "title": "The performative feminine",
+      "first_line": "You learned to abandon yourself before anyone else had the chance to reject you.",
+      "slides": 5,
+      "files": [
+        "content/carousels/c5/1.png",
+        "content/carousels/c5/2.png",
+        "content/carousels/c5/3.png",
+        "content/carousels/c5/4.png",
+        "content/carousels/c5/5.png"
+      ]
+    }
+  ],
+  "posts": [
+    {
+      "n": 1,
+      "quote": "Sensuality is how we make sense of reality.",
+      "file": "content/posts/p1.png"
+    },
+    {
+      "n": 2,
+      "quote": "Feeling is the thing that plugs us back into life.",
+      "file": "content/posts/p2.png"
+    },
+    {
+      "n": 3,
+      "quote": "Outsourcing yourself becomes self-sourcing.",
+      "file": "content/posts/p3.png"
+    },
+    {
+      "n": 4,
+      "quote": "A sensual woman is difficult to control, because she is at home in herself.",
+      "file": "content/posts/p4.png"
+    },
+    {
+      "n": 5,
+      "quote": "You are allowed to slow down. Slowness is where you meet yourself.",
+      "file": "content/posts/p5.png"
+    },
+    {
+      "n": 6,
+      "quote": "Reclaiming sensuality is not about becoming more desirable. It is about becoming intimate with life.",
+      "file": "content/posts/p6.png"
+    },
+    {
+      "n": 7,
+      "quote": "Make life your lover. The morning tea. The warm water. The sunlight on your skin.",
+      "file": "content/posts/p7.png"
+    },
+    {
+      "n": 8,
+      "quote": "You are not here to become a different woman. You are remembering the one who came before the world told you who to be.",
+      "file": "content/posts/p8.png"
+    }
+  ]
+}
