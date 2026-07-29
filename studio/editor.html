@@ -95,7 +95,7 @@ h1{font-size:22px;letter-spacing:-.02em;margin-bottom:3px}.lede{color:var(--sub)
  var v=document.getElementById('v'); if(v){v.removeAttribute('src'); v.src=clip; v.load&&v.load();}
  var h=document.querySelector('h1'); if(h&&title) h.textContent=title;
  var l=document.querySelector('.lede'); if(l) l.innerHTML=(brief?'<b>'+brief+'</b><br>':'')+'Review my suggested cut below. Drag a handle to give it more room, then lock.';
- var tx=document.querySelector('.tx'); if(tx) tx.style.display='none'; /* no per-clip transcript yet — hide empty panel */
+ var tx=document.querySelector('.tx'); if(tx) tx.style.display='none'; /* hide until this clip's caps load, then __setCaps rebuilds + reveals the transcript */
  window.CAPS=[]; window.SRC_START=0; window.__CLIP=clip;
  var pin=parseFloat(p.get('in')), pout=parseFloat(p.get('out')), pdur=parseFloat(p.get('dur'));
  window.SUG_IN=isFinite(pin)?pin:0; window.SUG_OUT=isFinite(pout)?pout:0; if(isFinite(pdur)) window.DUR=pdur;
@@ -130,15 +130,19 @@ function paint(){
 }
 function paintHead(){ph.style.left=pct(v.currentTime||0)+'%';}
 // ---- transcript ----
-let words=[];let _html='';
-CAPS.forEach(s=>{
-  if(s.gap){_html+='<span class="gap">…</span> ';return;}
-  const cls=s.extra?'w x':'w';
-  capWords(s).forEach(w=>{words.push(w);_html+='<span class="'+cls+'" data-t="'+w.ws.toFixed(2)+'" data-e="'+w.we.toFixed(2)+'">'+w.word+'</span> ';});
-});
-document.getElementById('script').innerHTML=_html;
-document.querySelectorAll('.script .w').forEach(el=>el.onclick=()=>{const t=+el.dataset.t,e=+el.dataset.e;
-  if(Math.abs(t-inT)<=Math.abs(t-outT)){inT=Math.min(t,outT-0.5);}else{outT=Math.max(e,inT+0.5);}paint();v.currentTime=inT;});
+let words=[];
+function buildTranscript(){
+  words=[];let _html='';
+  CAPS.forEach(s=>{
+    if(s.gap){_html+='<span class="gap">…</span> ';return;}
+    const cls=s.extra?'w x':'w';
+    capWords(s).forEach(w=>{words.push(w);_html+='<span class="'+cls+'" data-t="'+w.ws.toFixed(2)+'" data-e="'+w.we.toFixed(2)+'">'+w.word+'</span> ';});
+  });
+  const sc=document.getElementById('script'); if(!sc)return; sc.innerHTML=_html;
+  sc.querySelectorAll('.w').forEach(el=>el.onclick=()=>{const t=+el.dataset.t,e=+el.dataset.e;
+    if(Math.abs(t-inT)<=Math.abs(t-outT)){inT=Math.min(t,outT-0.5);}else{outT=Math.max(e,inT+0.5);}paint();v.currentTime=inT;});
+}
+buildTranscript();
 // ---- drag handles ----
 function timeFromX(clientX){const r=tl.getBoundingClientRect();let p=(clientX-r.left)/r.width;p=Math.max(0,Math.min(1,p));return p*DUR;}
 function drag(handle,which){handle.addEventListener('pointerdown',e=>{e.preventDefault();handle.setPointerCapture(e.pointerId);
@@ -201,7 +205,10 @@ document.getElementById('saveclip').onclick=()=>{
   setTimeout(()=>{sb.textContent='✓ Save clip → send to review';sb.style.opacity='';},3200);
   box.scrollIntoView({behavior:'smooth',block:'center'});
 };
-window.__setCaps=function(arr){try{CAPS.length=0;Array.prototype.push.apply(CAPS,arr);}catch(e){}renderCap((v&&v.currentTime)||0);};
+window.__setCaps=function(arr){try{CAPS.length=0;Array.prototype.push.apply(CAPS,arr);}catch(e){}
+  buildTranscript();                                   /* rebuild clickable transcript from this clip's captions */
+  var tx=document.querySelector('.tx'); if(tx) tx.style.display='';   /* reveal the panel the loader had hidden */
+  renderCap((v&&v.currentTime)||0); paint();};
 paint();
 </script>
 </body></html>
