@@ -1,0 +1,45 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>Workshop 2 · Somatic Institute for Women</title>
+<style>
+*{margin:0;box-sizing:border-box}
+:root{--ink:#2a2622;--sub:#8a827a;--line:#eae6df;--paper:#faf8f4;--accent:#4e8c12;--gold:#b9975b}
+body{font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5}
+.hd{max-width:900px;margin:0 auto;padding:40px 24px 8px}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700}
+h1{font-family:'Iowan Old Style',Palatino,Georgia,serif;font-size:30px;font-weight:500;margin:8px 0 10px;letter-spacing:-.01em}
+.hd p{color:var(--sub);font-size:15px;max-width:640px}
+.wrap{max-width:900px;margin:0 auto;padding:22px 24px 70px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 2px 14px rgba(0,0,0,.04)}
+.card video{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:#000}
+.card .b{padding:14px 15px 16px}
+.card .t{font-family:'Iowan Old Style',Palatino,Georgia,serif;font-size:17px;font-weight:600;line-height:1.25}
+.card .f{color:var(--gold);font-size:11.5px;font-weight:700;letter-spacing:.03em;margin:6px 0 8px;text-transform:uppercase}
+.card .br{color:var(--sub);font-size:13px;line-height:1.5}
+.foot{max-width:900px;margin:0 auto;padding:0 24px 50px;color:var(--sub);font-size:12.5px}
+</style></head><body>
+<div class="hd">
+  <div class="eyebrow">Workshop 2 · The Sensuality Wound</div>
+  <h1>Embodiment &amp; sensual movement — eight reels from one talk.</h1>
+  <p>Everything here was drawn from your second workshop, in your own words. Each reel comes with karaoke captions and an open 4:5 frame. Preview any of them below.</p>
+</div>
+<div class="wrap"><div class="grid" id="grid"></div></div>
+<div class="foot">Crafted by Perpetual Engine · in your words. Approvals + scheduling handled for you.</div>
+<script>
+var CLIPS=[
+ {n:"01",t:"Awareness beyond the neck up",fmt:"Reel · 1:19",br:"We live from the neck up. Sensuality is letting your sense of self drop past the mind into the body."},
+ {n:"02",t:"Your mind is part of your body",fmt:"Reel · 1:16",br:"Embodiment is not leaving the mind for the body. Your mind is part of your body. It includes everything."},
+ {n:"03",t:"Coming into contact with yourself",fmt:"Reel · 0:55",br:"When you touch your own being through the body, the survival mode you have been living in gets revealed."},
+ {n:"04",t:"The holding you may not have received",fmt:"Reel · 1:50",br:"A regulating nervous system holding you is one of our deepest needs. Many of us never got that met."},
+ {n:"05",t:"Becoming the parent to your own body",fmt:"Reel · 1:05",br:"Your touch meets the orphaned parts that were never held. You step in as mother and father for yourself."},
+ {n:"06",t:"Reclaiming your own movement",fmt:"Reel · 1:23",br:"For centuries women's movement was watched, judged and commodified. Reclaiming it is reclaiming yourself."},
+ {n:"07",t:"Move from sensation, not the mind",fmt:"Reel · 1:12",br:"Sensuality is the body's ability to feel. When movement becomes sensual, you stop moving from the mind."},
+ {n:"08",t:"Erotic innocence and aliveness",fmt:"Reel · 1:10",br:"The erotic is aliveness, not sex. It is the felt sense of the present moment that brings you alive."}
+];
+document.getElementById('grid').innerHTML=CLIPS.map(function(c){
+ return '<div class="card"><video controls playsinline preload="none" poster="assets/poster-'+c.n+'.jpg" src="assets/clip-'+c.n+'.mp4"></video>'+
+   '<div class="b"><div class="f">'+c.fmt+'</div><div class="t">'+c.t+'</div><div class="br">'+c.br+'</div></div></div>';
+}).join('');
+</script>
+</body></html>
