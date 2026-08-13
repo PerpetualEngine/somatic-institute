@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Which feel is yours?</title>
+<style>
+  :root{
+    --paper:#f4efe7; --paper-2:#efe7db; --ink:#39312a; --ink-soft:#6f6459;
+    --line:#e0d5c6; --accent:#a4694b;
+    --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Hoefler Text',Georgia,serif;
+    --sans:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);
+       -webkit-font-smoothing:antialiased;line-height:1.5}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+  header.hero{text-align:center;padding:88px 24px 44px}
+  .kicker{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);
+          margin-bottom:22px}
+  h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,7vw,74px);line-height:1.05;
+     letter-spacing:.005em}
+  .sub{max-width:640px;margin:26px auto 0;font-size:18px;color:var(--ink-soft)}
+  .sig{margin-top:22px;font-family:var(--serif);font-style:italic;font-size:19px;color:var(--ink)}
+  .legend{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin:30px auto 0}
+  .chip{border:1px solid var(--line);border-radius:999px;padding:8px 18px;font-size:13px;
+        letter-spacing:.06em;color:var(--ink-soft);background:var(--paper-2)}
+
+  section{padding:40px 0}
+  .band{border-top:1px solid var(--line);padding-top:46px}
+  .eyebrow{font-family:var(--serif);font-size:26px;letter-spacing:.01em;margin-bottom:6px}
+  .note{font-size:15px;color:var(--ink-soft);margin-bottom:28px;max-width:560px}
+
+  .heads{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-bottom:16px}
+  .heads div{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);
+             text-align:center}
+
+  .pairs{display:flex;flex-direction:column;gap:14px}
+  .ptitle{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--ink);
+          margin-top:26px}
+  .pairs .ptitle:first-child{margin-top:0}
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  .pair img{width:100%;height:auto;display:block;border-radius:4px;
+            box-shadow:0 10px 30px rgba(57,49,42,.14)}
+
+  /* filmstrips */
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  .strip{display:flex;gap:8px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory}
+  .strip img{height:300px;width:auto;flex:0 0 auto;border-radius:3px;scroll-snap-align:start;
+             box-shadow:0 8px 22px rgba(57,49,42,.13)}
+  .stripcap{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);
+            text-align:center;margin-bottom:10px}
+
+  footer{text-align:center;padding:60px 24px 90px;color:var(--ink-soft);font-size:14px;
+         border-top:1px solid var(--line);margin-top:30px}
+  footer .fm{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--ink);
+             margin-bottom:8px}
+
+  @media(max-width:640px){
+    header.hero{padding:60px 20px 32px}
+    .pair{grid-template-columns:1fr}
+    .heads{display:none}
+    .duo{grid-template-columns:1fr}
+    .strip img{height:220px}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="kicker">Somatic Institute for Women &nbsp;&middot;&nbsp; The Sensuous Collective</div>
+  <h1>Which feel is yours?</h1>
+  <p class="sub">A new campaign skin, generated in-house on your own photography. Twelve
+     creatives, each rendered twice. Nothing changes but the colour, so you can feel the
+     difference and choose the skin your feed lives in.</p>
+  <div class="sig">Warm colour, or quiet black &amp; white.</div>
+  <div class="legend">
+    <span class="chip">3 grain cards</span>
+    <span class="chip">4 photo stories</span>
+    <span class="chip">5 panel cards</span>
+    <span class="chip">Your voice, your photographs</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="band">
+    <div class="eyebrow">The grain cards</div>
+    <div class="note">No photograph in sight, yet it is all photograph. Each dark card is one of your real images crushed to near-black until only the film grain and a faint glow survive. Words carry everything.</div>
+    <div class="duo">
+        <div>
+          <div class="stripcap">In colour</div>
+          <div class="strip">
+            <img src="color/01-divorce-sensuality-from-sexuality.jpg" alt="Divorce sensuality from sexuality" loading="lazy">
+            <img src="color/11-the-texture-of-aliveness.jpg" alt="The texture of aliveness" loading="lazy">
+            <img src="color/08-the-erotic-is-aliveness.jpg" alt="The erotic is aliveness" loading="lazy">
+          </div>
+        </div>
+        <div>
+          <div class="stripcap">In black &amp; white</div>
+          <div class="strip">
+            <img src="bw/01-divorce-sensuality-from-sexuality.jpg" alt="Divorce sensuality from sexuality" loading="lazy">
+            <img src="bw/11-the-texture-of-aliveness.jpg" alt="The texture of aliveness" loading="lazy">
+            <img src="bw/08-the-erotic-is-aliveness.jpg" alt="The erotic is aliveness" loading="lazy">
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="eyebrow">Photo stories</div>
+    <div class="note">Your photography full-bleed, with the words resting in the shadows. Open framing, nothing cropped tight.</div>
+    <div class="duo">
+        <div>
+          <div class="stripcap">In colour</div>
+          <div class="strip">
+            <img src="color/10-an-act-of-rebellion.jpg" alt="An act of rebellion" loading="lazy">
+            <img src="color/05-a-sensual-woman.jpg" alt="A sensual woman is difficult to control" loading="lazy">
+            <img src="color/07-parent-to-your-own-body.jpg" alt="Become the parent to your own body" loading="lazy">
+            <img src="color/09-make-life-your-lover.jpg" alt="Make life your lover" loading="lazy">
+          </div>
+        </div>
+        <div>
+          <div class="stripcap">In black &amp; white</div>
+          <div class="strip">
+            <img src="bw/10-an-act-of-rebellion.jpg" alt="An act of rebellion" loading="lazy">
+            <img src="bw/05-a-sensual-woman.jpg" alt="A sensual woman is difficult to control" loading="lazy">
+            <img src="bw/07-parent-to-your-own-body.jpg" alt="Become the parent to your own body" loading="lazy">
+            <img src="bw/09-make-life-your-lover.jpg" alt="Make life your lover" loading="lazy">
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="eyebrow">Panel cards</div>
+    <div class="note">The editorial cut: photograph above, a quiet panel below. Cream for softness, charcoal for depth.</div>
+    <div class="duo">
+        <div>
+          <div class="stripcap">In colour</div>
+          <div class="strip">
+            <img src="color/02-feeling-safe-to-feel.jpg" alt="Feeling safe to feel" loading="lazy">
+            <img src="color/12-sensuality-is-yours.jpg" alt="Sensuality is yours" loading="lazy">
+            <img src="color/03-beyond-the-neck-up.jpg" alt="Beyond the neck up" loading="lazy">
+            <img src="color/04-let-life-in-all-the-way.jpg" alt="Let life in all the way" loading="lazy">
+            <img src="color/06-reclaim-your-own-movement.jpg" alt="Reclaim your own movement" loading="lazy">
+          </div>
+        </div>
+        <div>
+          <div class="stripcap">In black &amp; white</div>
+          <div class="strip">
+            <img src="bw/02-feeling-safe-to-feel.jpg" alt="Feeling safe to feel" loading="lazy">
+            <img src="bw/12-sensuality-is-yours.jpg" alt="Sensuality is yours" loading="lazy">
+            <img src="bw/03-beyond-the-neck-up.jpg" alt="Beyond the neck up" loading="lazy">
+            <img src="bw/04-let-life-in-all-the-way.jpg" alt="Let life in all the way" loading="lazy">
+            <img src="bw/06-reclaim-your-own-movement.jpg" alt="Reclaim your own movement" loading="lazy">
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="eyebrow">Up close</div>
+    <div class="note">Every piece at full size, colour beside black &amp; white, so you can
+       feel the difference before choosing.</div>
+    <div class="heads"><div>In colour</div><div>In black &amp; white</div></div>
+    <div class="pairs">
+      <div class="ptitle">Divorce sensuality from sexuality</div>
+      <div class="pair">
+        <img src="color/01-divorce-sensuality-from-sexuality.jpg" alt="Divorce sensuality from sexuality, colour" loading="lazy">
+        <img src="bw/01-divorce-sensuality-from-sexuality.jpg" alt="Divorce sensuality from sexuality, black and white" loading="lazy">
+      </div>
+      <div class="ptitle">The texture of aliveness</div>
+      <div class="pair">
+        <img src="color/11-the-texture-of-aliveness.jpg" alt="The texture of aliveness, colour" loading="lazy">
+        <img src="bw/11-the-texture-of-aliveness.jpg" alt="The texture of aliveness, black and white" loading="lazy">
+      </div>
+      <div class="ptitle">The erotic is aliveness</div>
+      <div class="pair">
+        <img src="color/08-the-erotic-is-aliveness.jpg" alt="The erotic is aliveness, colour" loading="lazy">
+        <img src="bw/08-the-erotic-is-aliveness.jpg" alt="The erotic is aliveness, black and white" loading="lazy">
+      </div>
+      <div class="ptitle">An act of rebellion</div>
+      <div class="pair">
+        <img src="color/10-an-act-of-rebellion.jpg" alt="An act of rebellion, colour" loading="lazy">
+        <img src="bw/10-an-act-of-rebellion.jpg" alt="An act of rebellion, black and white" loading="lazy">
+      </div>
+      <div class="ptitle">A sensual woman is difficult to control</div>
+      <div class="pair">
+        <img src="color/05-a-sensual-woman.jpg" alt="A sensual woman is difficult to control, colour" loading="lazy">
+        <img src="bw/05-a-sensual-woman.jpg" alt="A sensual woman is difficult to control, black and white" loading="lazy">
+      </div>
+      <div class="ptitle">Become the parent to your own body</div>
+      <div class="pair">
+        <img src="color/07-parent-to-your-own-body.jpg" alt="Become the parent to your own body, colour" loading="lazy">
+        <img src="bw/07-parent-to-your-own-body.jpg" alt="Become the parent to your own body, black and white" loading="lazy">
+      </div>
+      <div class="ptitle">Make life your lover</div>
+      <div class="pair">
+        <img src="color/09-make-life-your-lover.jpg" alt="Make life your lover, colour" loading="lazy">
+        <img src="bw/09-make-life-your-lover.jpg" alt="Make life your lover, black and white" loading="lazy">
+      </div>
+      <div class="ptitle">Feeling safe to feel</div>
+      <div class="pair">
+        <img src="color/02-feeling-safe-to-feel.jpg" alt="Feeling safe to feel, colour" loading="lazy">
+        <img src="bw/02-feeling-safe-to-feel.jpg" alt="Feeling safe to feel, black and white" loading="lazy">
+      </div>
+      <div class="ptitle">Sensuality is yours</div>
+      <div class="pair">
+        <img src="color/12-sensuality-is-yours.jpg" alt="Sensuality is yours, colour" loading="lazy">
+        <img src="bw/12-sensuality-is-yours.jpg" alt="Sensuality is yours, black and white" loading="lazy">
+      </div>
+      <div class="ptitle">Beyond the neck up</div>
+      <div class="pair">
+        <img src="color/03-beyond-the-neck-up.jpg" alt="Beyond the neck up, colour" loading="lazy">
+        <img src="bw/03-beyond-the-neck-up.jpg" alt="Beyond the neck up, black and white" loading="lazy">
+      </div>
+      <div class="ptitle">Let life in all the way</div>
+      <div class="pair">
+        <img src="color/04-let-life-in-all-the-way.jpg" alt="Let life in all the way, colour" loading="lazy">
+        <img src="bw/04-let-life-in-all-the-way.jpg" alt="Let life in all the way, black and white" loading="lazy">
+      </div>
+      <div class="ptitle">Reclaim your own movement</div>
+      <div class="pair">
+        <img src="color/06-reclaim-your-own-movement.jpg" alt="Reclaim your own movement, colour" loading="lazy">
+        <img src="bw/06-reclaim-your-own-movement.jpg" alt="Reclaim your own movement, black and white" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="fm">Same soul. Two skins.</div>
+  Tell us which feel is yours, and the whole engine follows it.
+</footer>
+
+</body>
+</html>
