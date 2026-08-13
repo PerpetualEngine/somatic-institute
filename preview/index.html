@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>What your content could look like · Somatic Institute for Women</title>
+<style>
+  :root{
+    --bg:#ffffff; --ink:#18191b; --ink-d:#121212; --sub:#79716b; --line:#ececea; --panel:#f2f1f0;
+    --green:#c9f57e; --green-ink:#083300; --green-deep:#5aa31c;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,serif;
+    --disp:"Didot","Bodoni 72","Playfair Display","Hoefler Text",Georgia,serif;
+    --sh:0 2px 8px rgba(20,20,15,.05); --sh-h:0 14px 40px rgba(20,20,15,.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Helvetica Neue",Helvetica,"Inter",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;letter-spacing:-.011em;-webkit-font-smoothing:antialiased}
+  header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.86);backdrop-filter:saturate(160%) blur(16px);border-bottom:1px solid var(--line)}
+  .hwrap{max-width:940px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:14px 28px}
+  .pe{width:30px;height:30px;border-radius:9px;background:var(--ink);color:var(--green);display:grid;place-items:center;font-weight:700;font-size:13px}
+  .brandname{font-weight:600;font-size:15px;letter-spacing:-.02em;flex:1}
+  .hdr-r{font-size:12.5px;color:var(--sub);letter-spacing:.02em}
+  main{max-width:940px;margin:0 auto;padding:0 28px 110px}
+  section{padding:54px 0;border-bottom:1px solid var(--line)}
+  section:last-child{border-bottom:none}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--panel);color:var(--ink-d);font-size:12.5px;font-weight:500;padding:7px 15px;border-radius:999px}
+  .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green-deep)}
+  .label{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--green-deep);margin-bottom:14px}
+  h1{font-family:var(--disp);font-weight:500;font-size:54px;letter-spacing:-.02em;line-height:1.02;color:var(--ink-d);margin:20px 0 16px}
+  h2{font-family:var(--disp);font-weight:500;font-size:32px;letter-spacing:-.01em;color:var(--ink-d);line-height:1.08}
+  .lede{font-size:18px;color:var(--sub);max-width:620px;margin-top:6px}
+  .whatsub{font-size:15px;color:var(--sub);max-width:640px;margin-top:8px}
+  .hero{padding:64px 0 50px}
+  /* carousel (pre-rendered slides) */
+  .slides{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+  .slides img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px;box-shadow:var(--sh);display:block}
+  .capnote{font-size:13.5px;color:var(--sub);font-style:italic;margin-top:18px;font-family:var(--serif)}
+  /* singles */
+  .singles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+  .singles img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px;box-shadow:var(--sh);display:block}
+  /* video phone */
+  .vidrow{display:flex;gap:40px;margin-top:22px;align-items:flex-start;flex-wrap:wrap}
+  .phone{flex:none;width:300px;aspect-ratio:4/5;border-radius:30px;background:#000;padding:9px;box-shadow:var(--sh-h);position:relative}
+  .phone video{width:100%;height:100%;border-radius:22px;object-fit:cover;display:block;background:#000}
+  .phone .subs{position:absolute;left:18px;right:18px;bottom:34px;text-align:center;pointer-events:none;font-family:"Helvetica Neue",Helvetica,sans-serif;font-weight:800;font-size:17px;line-height:1.3;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.9),0 0 2px rgba(0,0,0,.95)}
+  .phone .subs span.won{color:var(--green)}
+  .vidbody{flex:1;min-width:260px}
+  .vidbody h4{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--green-deep);margin:0 0 7px}
+  .vidbody p{font-size:15.5px;color:#34302c;margin:9px 0;font-family:var(--serif)}
+  /* quote */
+  .quote{position:relative;aspect-ratio:4/5;max-width:560px;border-radius:14px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;margin-top:20px;box-shadow:var(--sh)}
+  .quote img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  /* how it works */
+  .steps3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:22px}
+  .steps3 .st{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:var(--sh)}
+  .steps3 .st .n{width:28px;height:28px;border-radius:50%;background:var(--green);color:var(--green-ink);display:grid;place-items:center;font-weight:600;font-size:13px;margin-bottom:13px}
+  .steps3 .st b{display:block;font-size:15.5px;letter-spacing:-.01em;color:var(--ink-d);margin-bottom:5px}
+  .steps3 .st span{font-size:13.5px;color:var(--sub);line-height:1.5}
+  .cta{background:#f6ffe9;border:1px solid #d8efb4;border-radius:18px;padding:34px;text-align:center;margin-top:8px;max-width:680px}
+  .cta h3{font-family:var(--disp);font-size:26px;font-weight:500;letter-spacing:-.01em;color:var(--ink-d)}
+  .cta p{max-width:520px;margin:12px auto 22px;font-size:15px;color:#34302c}
+  .cta .btn{display:inline-block;background:var(--green);color:var(--green-ink);font-weight:600;font-size:15px;padding:14px 28px;border-radius:999px;text-decoration:none;letter-spacing:-.01em}
+  footer{max-width:940px;margin:0 auto;padding:36px 28px 0;display:flex;align-items:center;gap:11px;color:var(--sub);font-size:12.5px}
+  @media(max-width:720px){
+    main{padding:0 18px 84px} section{padding:42px 0} h1{font-size:38px}
+    header .hdr-r{display:none}
+    .slides,.singles{grid-template-columns:1fr 1fr;gap:11px}
+    .vidrow{flex-direction:column;gap:20px}.phone{width:100%;max-width:300px;margin:0 auto}
+    .steps3{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<header><div class="hwrap"><div class="pe">PE</div><span class="brandname">Perpetual Engine</span><span class="hdr-r">for Somatic Institute for Women</span></div></header>
+
+<main>
+  <section class="hero">
+    <span class="eyebrow">A content sample</span>
+    <h1>What your content<br>could look like.</h1>
+    <p class="lede">Everything below was drawn from your own workshops, in your voice and your look. No new filming, no new writing from you. This is one workshop, reimagined as a month of content.</p>
+  </section>
+
+  <section>
+    <span class="label">Carousel · saveable teaching</span>
+    <h2>Feeling safe to feel</h2>
+    <p class="whatsub">A five-slide carousel built from your Sensual Wound teaching, on your own photography.</p>
+    <div class="slides">
+      <img src="https://perpetualengine.github.io/somatic-institute/workshop-1/content/carousels/c1/1.png" alt="slide 1">
+      <img src="https://perpetualengine.github.io/somatic-institute/workshop-1/content/carousels/c1/2.png" alt="slide 2">
+      <img src="https://perpetualengine.github.io/somatic-institute/workshop-1/content/carousels/c1/3.png" alt="slide 3">
+      <img src="https://perpetualengine.github.io/somatic-institute/workshop-1/content/carousels/c1/4.png" alt="slide 4">
+      <img src="https://perpetualengine.github.io/somatic-institute/workshop-1/content/carousels/c1/5.png" alt="slide 5">
+    </div>
+    <p class="capnote">Swipe-through, ready to post. One of five carousels from this single workshop.</p>
+  </section>
+
+  <section>
+    <span class="label">Reel · captioned</span>
+    <h2>A moment from the room</h2>
+    <p class="whatsub">Cut from your workshop, framed open at 4:5, with word-by-word captions in your lime.</p>
+    <div class="vidrow">
+      <div class="phone">
+        <video src="https://perpetualengine.github.io/somatic-institute/workshop-2/assets/clip-04.mp4" poster="https://perpetualengine.github.io/somatic-institute/workshop-2/assets/poster-04.jpg" controls playsinline preload="none"></video>
+        <div class="subs">we fear feeling because our culture <span class="won">never</span> nurtured the sensitive body</div>
+      </div>
+      <div class="vidbody">
+        <h4>The bold point</h4>
+        <p>We fear feeling because our culture never nurtured the sensitive body. Feeling safe to feel is where the work begins.</p>
+        <h4>Why it works</h4>
+        <p>Your own words, an open frame, and captions that hold the eye. Fourteen of these are already cut from your first two workshops.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="label">Single posts · pull-quotes</span>
+    <h2>Words that stop the scroll</h2>
+    <div class="singles">
+      <img src="https://perpetualengine.github.io/somatic-institute/workshop-1/content/posts/p1.png" alt="quote 1">
+      <img src="https://perpetualengine.github.io/somatic-institute/workshop-1/content/posts/p3.png" alt="quote 2">
+      <img src="https://perpetualengine.github.io/somatic-institute/workshop-1/content/posts/p6.png" alt="quote 3">
+    </div>
+    <p class="capnote">Eight quote cards, each a line from you, set on your own photography.</p>
+  </section>
+
+  <section>
+    <span class="label">How it works</span>
+    <h2>Your part stays small.</h2>
+    <div class="steps3">
+      <div class="st"><div class="n">1</div><b>You send one recording</b><span>A workshop, a talk, a call. That is the whole ask from you.</span></div>
+      <div class="st"><div class="n">2</div><b>We build the month</b><span>Reels, carousels, quote cards, captions, all in your voice and look.</span></div>
+      <div class="st"><div class="n">3</div><b>You approve, we post</b><span>Tap approve on each piece. We schedule and publish for you.</span></div>
+    </div>
+    <div class="cta">
+      <h3>This is one workshop. Imagine a month of it.</h3>
+      <p>You already have the material. Let us turn it into a feed that feels like you, every week, without adding to your plate.</p>
+      <a class="btn" href="https://calendly.com/perpetualfunnels/30min">Let's map it out →</a>
+    </div>
+  </section>
+</main>
+
+<footer><div class="pe" style="width:24px;height:24px;font-size:11px">PE</div><span>Crafted by Perpetual Engine · in your words</span></footer>
+</body></html>
